@@ -1,6 +1,6 @@
 {
   "name": "Pb138 restaurantmenu",
   "tagline": "Project repository for pb138 course at FI MUNI",
-  "body": "\r\n# Správa denního menu\r\nRepozitář k projektu do předmětu pb138 na FI MUNI\r\n\r\n###Zadání:\r\nVytvořte webovou aplikaci pro správu denního menu restaurace, s možností předobjednávky jídel. Pro uložení dat zvolte vhodný formát. Aplikace bude podporovat import a export menu na celý týden v XML formátu, doplňte XSLT šablony pro prezentaci menu v různých formátech (web, tisk).\r\n\r\n###Členové\r\nK 22.4.2016 se na projektu podílí:\r\nVojtěch Podhajský (@LameOrc), Tomáš Jochec(@jochec), Lucie Bartoňková(@433488)\r\n\r\n",
+  "body": "\r\n# Správa denního menu\r\nRepozitář k projektu do předmětu pb138 na FI MUNI\r\n\r\n###Zadání:\r\nVytvořte webovou aplikaci pro správu denního menu restaurace, s možností předobjednávky jídel. Pro uložení dat zvolte vhodný formát. Aplikace bude podporovat import a export menu na celý týden v XML formátu, doplňte XSLT šablony pro prezentaci menu v různých formátech (web, tisk).\r\n\r\n###Členové\r\nK 22.4.2016 se na projektu podílí:\r\nVojtěch Podhajský (@LameOrc), Tomáš Jochec(@jochec), Lucie Bartoňková(@433488)\r\n\r\n###Návrh\r\nAplikace se bude skládat ze 2 entit a 2 aktérů. Podrobnější návrh je k vidění v  souborech![Class diagram.jpg](https://github.com/Lameorc/pb138_RestaurantMenu/blob/master/Class%20diagram.jpg) a ![Actors.jp](https://github.com/Lameorc/pb138_RestaurantMenu/blob/master/Actors.jpg)",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
