@@ -61,6 +61,15 @@ public class Food {
     public void setMenuId(Long menu_id) {
         this.menuId = menu_id;
     }
+
+    public Food(Long id, String name, BigDecimal price, String description, LocalDate date, Long menuId) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.date = date;
+        this.menuId = menuId;
+    }
     
     
 }
