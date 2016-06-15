@@ -2,6 +2,7 @@ package Managers;
 
 import entities.Food;
 import entities.Menu;
+import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import utils.FoodMapper;
 
 
 /**
@@ -16,19 +18,9 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
  */
 public class FoodManagerImpl implements FoodManager {
     private final JdbcTemplate jdbc;
-    private final RowMapper<Food> foodMapper;
             
     
-    public FoodManagerImpl(DataSource datasource) {
-        this.foodMapper = (rs, row) ->
-                (new Food(
-                        rs.getLong("id"),
-                        rs.getString("name"),
-                        rs.getBigDecimal("price"),
-                        rs.getString("description"),
-                        rs.getDate("food_date").toLocalDate(),
-                        rs.getLong("menu_id")
-                ));
+    public FoodManagerImpl(DataSource datasource) {        
         jdbc = new JdbcTemplate(datasource);
     }
     
@@ -84,12 +76,17 @@ public class FoodManagerImpl implements FoodManager {
         }
         Food f;
         try{
-            f = jdbc.queryForObject("SELECT * FROM foor WHERE id=?",
-                    foodMapper);
+            f = jdbc.queryForObject("SELECT * FROM food WHERE id=?",
+                    (rs, row) -> new FoodMapper().mapRow(rs, row));
         }
         catch(EmptyResultDataAccessException e){
             f = null;
         }        
         return f;
     }    
+
+    @Override
+    public List<Food> getAllFood() {
+        return jdbc.query("SELECT * FROM food", (rs, row) -> new FoodMapper().mapRow(rs, row));
+    }
 }

@@ -13,5 +13,4 @@ public interface FoodManager {
     void removeFood(Food food);
     Food findFood(Long id);
     List<Food> getAllFood();
-    void AssignFoodToMenu(Food food, Menu menu);
 }
