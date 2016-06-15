@@ -2,6 +2,8 @@ package Managers;
 
 import entities.Food;
 import entities.Menu;
+
+import java.sql.Date;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -36,7 +38,7 @@ public class FoodManagerImpl implements FoodManager {
                 .addValue("food_name", food.getName())
                 .addValue("price", food.getPrice())
                 .addValue("description", food.getDescription())
-                .addValue("food_date", food.getDate())
+                .addValue("food_date", Date.valueOf(food.getDate()))
                 .addValue("menu_id", food.getMenuId());
         Number id = insert.executeAndReturnKey(params);
         food.setId(id.longValue());
@@ -47,7 +49,7 @@ public class FoodManagerImpl implements FoodManager {
         if(food == null){
             throw new IllegalArgumentException("Food can't be null when updating");
         }
-        jdbc.update("UPDATE menus SET food_name=?"
+        jdbc.update("UPDATE food SET food_name=?"
                 + ",price=?,"
                 + "description=?,"
                 + "food_date=?,"
@@ -56,7 +58,7 @@ public class FoodManagerImpl implements FoodManager {
                 food.getName(),
                 food.getPrice(),
                 food.getDescription(),
-                food.getDate(),
+                Date.valueOf(food.getDate()),
                 food.getMenuId(),
                 food.getId());
     }
@@ -77,7 +79,8 @@ public class FoodManagerImpl implements FoodManager {
         Food f;
         try{
             f = jdbc.queryForObject("SELECT * FROM food WHERE id=?",
-                    (rs, row) -> new FoodMapper().mapRow(rs, row));
+                    (rs, row) -> new FoodMapper().mapRow(rs, row),
+                    id);
         }
         catch(EmptyResultDataAccessException e){
             f = null;
