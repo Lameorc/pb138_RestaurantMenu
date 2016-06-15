@@ -13,6 +13,5 @@ public interface MenuManager {
     void removeMenu(Menu menu);
     Menu findMenu(Long Id);
     List<Menu> getAllMenus();
-    Menu findMenuWithFood(Food food);
     void assignFoodToMenu(Food food, Menu menu);
 }

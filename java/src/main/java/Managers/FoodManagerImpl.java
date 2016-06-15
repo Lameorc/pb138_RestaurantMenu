@@ -47,7 +47,7 @@ public class FoodManagerImpl implements FoodManager {
         if(food == null){
             throw new IllegalArgumentException("Food can't be null when updating");
         }
-        jdbc.update("UPDATE food SET food_name=?"
+        jdbc.update("UPDATE menus SET food_name=?"
                 + ",price=?,"
                 + "description=?,"
                 + "food_date=?,"
