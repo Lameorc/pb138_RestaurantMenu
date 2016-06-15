@@ -44,7 +44,7 @@ public class MenuManagerImpl implements MenuManager {
         jdbc.update("UPDATE food SET START_DATE=?"
                         + ",END_DATE=? "
                         + "where id=?",
-                menu.getEndDate(),
+                menu.getStartDate(),
                 menu.getEndDate(),
                 menu.getId());
     }
