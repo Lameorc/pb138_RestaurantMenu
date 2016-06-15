@@ -20,7 +20,7 @@ public class FoodMapper implements RowMapper<Food> {
     public Food mapRow(ResultSet rs, int i) throws SQLException {
         return new Food(
                 rs.getLong("id"),
-                rs.getString("name"),
+                rs.getString("food_name"),
                 rs.getBigDecimal("price"),
                 rs.getString("description"),
                 rs.getDate("food_date").toLocalDate(),

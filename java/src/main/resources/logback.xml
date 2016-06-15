@@ -1,0 +1,16 @@
+<configuration>
+    <appender name="APP" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <logger name="entities" level="debug"/>
+    <logger name="corg.springframework.transaction" level="debug"/>
+    <logger name="org.springframework.jdbc.datasource.DataSourceTransactionManager" level="debug" />
+    <logger name="org.springframework.jdbc.core" level="debug"/>
+    <logger name="org.springframework.jdbc.core.StatementCreatorUtils" level="trace"/>
+
+    <root level="info">
+        <appender-ref ref="APP"/>
+    </root>
+</configuration>

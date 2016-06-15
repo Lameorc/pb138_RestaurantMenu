@@ -8,6 +8,8 @@ package utils;
 import entities.Food;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import entities.Menu;
 import org.springframework.jdbc.core.RowMapper;
 
 /**

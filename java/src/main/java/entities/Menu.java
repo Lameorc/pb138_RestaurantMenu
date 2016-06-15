@@ -34,4 +34,10 @@ public class Menu {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
+
+    public Menu(long id, LocalDate startDate, LocalDate endDate) {
+        this.id = id;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 }
