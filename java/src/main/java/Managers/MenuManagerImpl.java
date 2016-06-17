@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import utils.MenuMapper;
 
 import javax.sql.DataSource;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -30,8 +31,8 @@ public class MenuManagerImpl implements MenuManager {
         SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbc).
                 withTableName("menus").usingGeneratedKeyColumns("id");
         SqlParameterSource params = new MapSqlParameterSource()
-                .addValue("START_DATE", menu.getStartDate())
-                .addValue("END_DATE", menu.getEndDate());
+                .addValue("START_DATE", Date.valueOf(menu.getStartDate()))
+                .addValue("END_DATE", Date.valueOf(menu.getEndDate()));
         Number id = insert.executeAndReturnKey(params);
         menu.setId(id.longValue());
     }
@@ -44,8 +45,8 @@ public class MenuManagerImpl implements MenuManager {
         jdbc.update("UPDATE food SET START_DATE=?"
                         + ",END_DATE=? "
                         + "where id=?",
-                menu.getStartDate(),
-                menu.getEndDate(),
+                Date.valueOf(menu.getStartDate()),
+                Date.valueOf(menu.getEndDate()),
                 menu.getId());
     }
 
@@ -65,7 +66,8 @@ public class MenuManagerImpl implements MenuManager {
         Menu menu;
         try{
             menu = jdbc.queryForObject("SELECT * FROM menus WHERE id=?",
-                    (rs, row) -> new MenuMapper().mapRow(rs, row));
+                    (rs, row) -> new MenuMapper().mapRow(rs, row),
+                    id);
         }
         catch(EmptyResultDataAccessException e){
             menu = null;

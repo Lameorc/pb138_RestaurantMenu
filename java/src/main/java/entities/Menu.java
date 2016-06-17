@@ -7,7 +7,7 @@ import java.time.LocalDate;
  * Created by Vojta Podhajsky on 12.06.2016.
  */
 public class Menu {
-    private long id;
+    private Long id;
     private LocalDate startDate;
     private LocalDate endDate;
 
@@ -35,7 +35,7 @@ public class Menu {
         this.endDate = endDate;
     }
 
-    public Menu(long id, LocalDate startDate, LocalDate endDate) {
+    public Menu(Long id, LocalDate startDate, LocalDate endDate) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
