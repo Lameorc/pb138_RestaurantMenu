@@ -1,15 +1,18 @@
 package Managers;
 
 import entities.Food;
+import org.springframework.core.io.Resource;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.springframework.jdbc.datasource.init.ScriptUtils;
+import org.testng.annotations.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.DERBY;
 import static org.assertj.core.api.Assertions.*;
@@ -20,14 +23,15 @@ import static org.assertj.core.api.Assertions.*;
 public class FoodManagerImplTest {
     private FoodManagerImpl manager;
     private EmbeddedDatabase db;
-    @BeforeClass
+    @BeforeTest
     public void setUp() throws Exception {
         db = new EmbeddedDatabaseBuilder().setType(DERBY).addScript("createTables.sql").build();
         manager = new FoodManagerImpl(db);
     }
 
-    @AfterClass
+    @AfterTest
     public void tearDown() throws Exception {
+        JdbcTemplate jdbc = new JdbcTemplate(db);
         db.shutdown();
     }
 
@@ -60,15 +64,18 @@ public class FoodManagerImplTest {
 
     @Test
     public void testRemoveFood() throws Exception {
-        assertThat(manager.getAllFood()).isEmpty();
-
         Food food = new Food(null, "Svíčková", BigDecimal.valueOf(200), "", LocalDate.of(2016, 12, 12), null);
         manager.createFood(food);
+        List<Food> foodInDb = manager.getAllFood();
+        List<Long> ids = foodInDb.stream().map(Food::getId).collect(Collectors.toList());
+        assertThat(ids).contains(food.getId());
 
         manager.removeFood(food);
-        List<Food> foodInDb = manager.getAllFood();
-        assertThat(foodInDb).doesNotContain(food);
-        assertThat(foodInDb).isEmpty();
+        foodInDb.clear();
+        ids.clear();
+        foodInDb = manager.getAllFood();
+        ids.addAll(foodInDb.stream().map(Food::getId).collect(Collectors.toList()));
+        assertThat(ids).doesNotContain(food.getId());
     }
 
     @Test
