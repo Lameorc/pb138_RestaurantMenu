@@ -4,6 +4,7 @@ import entities.Menu;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -21,7 +22,8 @@ import static org.testng.Assert.*;
 public class MenuManagerImplTest {
     private MenuManagerImpl manager;
     private EmbeddedDatabase db;
-    @BeforeMethod
+
+    @BeforeClass
     public void setUp() throws Exception {
         db = new EmbeddedDatabaseBuilder().setType(DERBY).addScript("createTables.sql").build();
         manager = new MenuManagerImpl(db);
