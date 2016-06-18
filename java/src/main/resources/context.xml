@@ -16,10 +16,10 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         <property name="password" value="${jdbc.password}"/>
     </bean>
 
-    <bean id="foodManager" class="Managers.FoodManagerImpl" scope="singleton">
+    <bean id="foodManager" class="backend.Managers.FoodManagerImpl" scope="singleton">
         <constructor-arg ref="dataSource"/>
     </bean>
-    <bean id="menuManager" class="Managers.MenuManagerImpl" scope="singleton">
+    <bean id="menuManager" class="backend.Managers.MenuManagerImpl" scope="singleton">
         <constructor-arg ref="dataSource"/>
     </bean>
     <tx:annotation-driven/>

@@ -1,18 +1,16 @@
-package Managers;
+package backend.Managers;
 
-import entities.Food;
-import entities.Menu;
+import backend.entities.Food;
 
 import java.sql.Date;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import utils.FoodMapper;
+import backend.utils.FoodMapper;
 
 
 /**

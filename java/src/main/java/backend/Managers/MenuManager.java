@@ -1,7 +1,7 @@
-package Managers;
+package backend.Managers;
 
-import entities.Food;
-import entities.Menu;
+import backend.entities.Food;
+import backend.entities.Menu;
 import java.util.List;
 
 /**

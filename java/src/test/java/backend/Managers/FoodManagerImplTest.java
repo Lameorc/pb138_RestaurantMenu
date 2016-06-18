@@ -1,16 +1,13 @@
-package Managers;
+package backend.Managers;
 
-import entities.Food;
-import org.springframework.core.io.Resource;
+import backend.entities.Food;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.testng.annotations.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

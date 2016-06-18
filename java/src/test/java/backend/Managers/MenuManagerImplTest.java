@@ -1,19 +1,16 @@
-package Managers;
+package backend.Managers;
 
-import entities.Menu;
+import backend.entities.Menu;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.testng.annotations.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.DERBY;
-import static org.testng.Assert.*;
 
 /**
  * Created by Tomas Jochec on 17.06.2016.
