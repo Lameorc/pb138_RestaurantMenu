@@ -18,13 +18,18 @@ public class FoodMapper implements RowMapper<Food> {
 
     @Override
     public Food mapRow(ResultSet rs, int i) throws SQLException {
+        String menuIdString = rs.getString("menu_id");
+        Long menuId = null;
+        if(menuIdString != null){
+            menuId = Long.parseLong(menuIdString);
+        }
         return new Food(
                 rs.getLong("id"),
                 rs.getString("food_name"),
                 rs.getBigDecimal("price"),
                 rs.getString("description"),
                 rs.getDate("food_date").toLocalDate(),
-                rs.getLong("menu_id")
+                menuId
         );
     }
 
