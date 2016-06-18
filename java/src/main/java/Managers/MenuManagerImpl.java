@@ -42,7 +42,7 @@ public class MenuManagerImpl implements MenuManager {
         if(menu == null){
             throw new IllegalArgumentException("Menu can't be null when updating");
         }
-        jdbc.update("UPDATE food SET START_DATE=?"
+        jdbc.update("UPDATE menus SET START_DATE=?"
                         + ",END_DATE=? "
                         + "where id=?",
                 Date.valueOf(menu.getStartDate()),
