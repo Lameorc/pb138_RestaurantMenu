@@ -1,6 +1,7 @@
 package backend.Managers;
 
 import backend.entities.Menu;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.testng.annotations.*;
@@ -21,12 +22,15 @@ public class MenuManagerImplTest {
 
     @BeforeTest
     public void setUp() throws Exception {
-        db = new EmbeddedDatabaseBuilder().setType(DERBY).addScript("createTables.sql").build();
+        db = new EmbeddedDatabaseBuilder().setType(DERBY).setName("MenuManagerImplTest").addScript("createTables.sql").build();
         manager = new MenuManagerImpl(db);
     }
 
     @AfterTest
     public void tearDown() throws Exception {
+        JdbcTemplate jdbc = new JdbcTemplate(db);
+        jdbc.execute("DROP TABLE food");
+        jdbc.execute("DROP TABLE menus");
         db.shutdown();
     }
 

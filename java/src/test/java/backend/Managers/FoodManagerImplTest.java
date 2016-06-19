@@ -22,13 +22,15 @@ public class FoodManagerImplTest {
     private EmbeddedDatabase db;
     @BeforeTest
     public void setUp() throws Exception {
-        db = new EmbeddedDatabaseBuilder().setType(DERBY).addScript("createTables.sql").build();
+        db = new EmbeddedDatabaseBuilder().setType(DERBY).setName("FoodManagerImplTest").addScript("createTables.sql").build();
         manager = new FoodManagerImpl(db);
     }
 
     @AfterTest
     public void tearDown() throws Exception {
         JdbcTemplate jdbc = new JdbcTemplate(db);
+        jdbc.execute("DROP TABLE food");
+        jdbc.execute("DROP TABLE menus");
         db.shutdown();
     }
 
