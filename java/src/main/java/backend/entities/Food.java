@@ -70,6 +70,8 @@ public class Food {
         this.date = date;
         this.menuId = menuId;
     }
-    
-    
+
+    public Food() {
+
+    }
 }
