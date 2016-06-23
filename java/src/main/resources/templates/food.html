@@ -58,7 +58,7 @@
         <span th:if="${food.id != null}">
           <h2 class="form-signin-heading">Upravit jídlo</h2>
         </span>
-        
+
         <div class="form-group">
           <input name="id" type="hidden" th:field="*{id}" id="id" class="form-control" />
         </div>
@@ -80,7 +80,7 @@
 
         <div class="form-group">
             <label for="date" class="sr-only">Datum</label>
-            <input name="date" type="date" th:field="*{date}" id="date" class="form-control" placeholder="Datum" required="required" />
+            <input name="date" type="date" th:field="*{date}" th:value="*{date}" id="date" class="form-control" placeholder="Datum" required="required" />
         </div>
 
         <span th:if="${food.id == null}">
