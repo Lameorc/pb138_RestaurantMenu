@@ -1,5 +1,7 @@
 package backend.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -11,6 +13,7 @@ public class Food {
     private String name;
     private BigDecimal price;
     private String description;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate date;
     private Long menuId;
 
@@ -70,6 +73,8 @@ public class Food {
         this.date = date;
         this.menuId = menuId;
     }
-    
-    
+
+    public Food() {
+
+    }
 }

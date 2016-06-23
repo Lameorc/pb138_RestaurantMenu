@@ -1,6 +1,8 @@
 package webapp.controllers;
 
+import backend.Managers.FoodManager;
 import backend.Managers.MenuManager;
+import backend.entities.Food;
 import backend.entities.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -29,6 +31,12 @@ public class indexController {
                 !(m.getStartDate().isBefore(LocalDate.now())
                         && m.getEndDate().isAfter(LocalDate.now())));
         model.addAttribute("menus", menus);
+
+
+        FoodManager foodManager = (FoodManager) context.getBean("foodManager");
+        List<Food> foods = foodManager.getAllFood();
+        model.addAttribute("foods", foods);
+
         return "index";
     }
 }

@@ -35,14 +35,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">PB138 Projekt</a>
+          <a class="navbar-brand" href="/" th:href="@{/}">PB138 Projekt</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Jídelní lístek</a></li>
+            <li class="active"><a href="/" th:href="@{/}"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Jídelní lístek</a></li>
+            <li><a href="food" th:href="@{/food}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Přidat jídlo</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li sec:authorize="IsAnonymous()"><a href="login">Přihlásit se</a></li>
+            <li sec:authorize="IsAnonymous()"><a href="login" th:href="@{/login}">Přihlásit se</a></li>
             <li sec:authorize="IsAuthenticated()"><form th:action="@{/logout}" method="POST"></form></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -60,31 +61,16 @@
               <th><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 13. 6. 2016</th>
             </thead>
             <tbody>
-              <tr>
-                <td>1.</td>
-                <td>Smažený květák, vařené nové brambory s máslem</td>
-                <td>84 ,-</td>
-                <td><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td> </tr>
-              <tr>
-                <td>2.</td>
-                <td>Vepřový přírodní řízek zapečený se salámem a nivou, hranolky</td>
-                <td>84 ,-</td>
-                <td><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td> </tr>
-              <tr>
-                <td>3.</td>
-                <td>Pečená kuřecí kapsa s listovým penátem a mozarellou, kari rýže</td>
-                <td>84 ,-</td>
-                <td><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td> </tr>
-              <tr>
-                <td>4.</td>
-                <td>Smažený hermelín v bramboráku, zeleninová obloha</td>
-                <td>84 ,-</td>
-                <td><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td> </tr>
-              <tr>
-                <td>5.</td>
-                <td>Zeleninový talíř, kuřecí smaženky, dressing, pečivo</td>
-                <td>84 ,-</td>
-                <td><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td> </tr>
+
+              <tr th:each="food, i : ${foods}">
+                <td th:text="${i.count} + '.'"></td>
+                <td th:text="${food.name}"></td>
+                <td th:text="${food.price} + ' ,-'"></td>
+                <td><a th:href="${food.id}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td>
+                <td><a th:href="@{/food/edit/{id}(id=${food.id})}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Upravit</a></td>
+                <td><a th:href="@{/food/delete/{id}(id=${food.id})}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Smazat</a></td>
+              </tr>
+
             </tbody>
           </table>
 

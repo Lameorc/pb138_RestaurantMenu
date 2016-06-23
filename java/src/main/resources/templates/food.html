@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -41,10 +40,10 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="/" th:href="@{/}"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Jídelní lístek</a></li>
-            <li><a href="food" th:href="@{/food}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Přidat jídlo</a></li>
+            <li class="active"><a href="food" th:href="@{/food}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Přidat jídlo</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="login" th:href="@{/login}">Přihlásit se</a></li>
+            <li><a href="login" th:href="@{/login}">Přihlásit se</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -52,18 +51,44 @@
 
     <div class="container">
       <p th:if="${param.error}" class="alert alert-error">There was an error, please try again</p>
-      <form th:action="@{/login}" method="post" class="form-signin">
-        <h2 class="form-signin-heading">Přihlášení</h2>
-        <label for="username" class="sr-only">E-mail</label>
-        <input name="username" type="text" id="username" class="form-control" placeholder="E-mail" required="required" autofocus="autofocus"/>
-        <label for="inputPassword" class="sr-only">Heslo</label>
-        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Heslo" required="required" />
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"/> Pamatovat si mě
-          </label>
+      <form th:action="@{/food}" th:object="${food}" method="post" class="form-add-food">
+        <span th:if="${food.id == null}">
+          <h2 class="form-signin-heading">Přidat jídlo</h2>
+        </span>
+        <span th:if="${food.id != null}">
+          <h2 class="form-signin-heading">Upravit jídlo</h2>
+        </span>
+
+        <div class="form-group">
+          <input name="id" type="hidden" th:field="*{id}" id="id" class="form-control" />
         </div>
-        <button id="login" class="btn btn-lg btn-primary btn-block" type="submit">Přihlásit se</button>
+
+        <div class="form-group">
+            <label for="name">Název jídla</label>
+            <input name="name" type="text" th:field="*{name}" id="name" class="form-control" placeholder="Název jídla" required="required" autofocus="autofocus"/>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Cena</label>
+            <input name="price" type="number" th:field="*{price}" id="price" class="form-control" placeholder="Cena" required="required" />
+        </div>
+
+        <div class="form-group">
+            <label for="description">Popis</label>
+            <input name="description" type="text" th:field="*{description}" id="description" class="form-control" placeholder="Popis" required="required" />
+        </div>
+
+        <div class="form-group">
+            <label for="date">Datum</label>
+            <input name="date" type="date" th:field="*{date}" th:value="*{date}" id="date" class="form-control" placeholder="Datum" required="required" />
+        </div>
+
+        <span th:if="${food.id == null}">
+          <button id="add" class="btn btn-lg btn-primary btn-block" type="submit">Přidat jídlo</button>
+        </span>
+        <span th:if="${food.id != null}">
+          <button id="edit" class="btn btn-lg btn-primary btn-block" type="submit">Upravit jídlo</button>
+        </span>
       </form>
     </div> <!-- /container -->
 
