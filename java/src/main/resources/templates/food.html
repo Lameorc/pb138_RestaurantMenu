@@ -35,15 +35,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">PB138 Projekt</a>
+          <a class="navbar-brand" href="/" th:href="@{/}">PB138 Projekt</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Jídelní lístek</a></li>
-            <li class="active"><a href="food"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Přidat jídlo</a></li>
+            <li><a href="/" th:href="@{/}"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Jídelní lístek</a></li>
+            <li class="active"><a href="food" th:href="@{/food}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Přidat jídlo</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="login">Přihlásit se</a></li>
+            <li><a href="login" th:href="@{/login}">Přihlásit se</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -53,6 +53,10 @@
       <p th:if="${param.error}" class="alert alert-error">There was an error, please try again</p>
       <form th:action="@{/food}" th:object="${food}" method="post" class="form-add-food">
         <h2 class="form-signin-heading">Přidat jídlo</h2>
+
+        <div class="form-group">
+          <input name="id" type="hidden" th:field="*{id}" id="id" class="form-control" />
+        </div>
 
         <div class="form-group">
             <label for="name" class="sr-only">Název jídla</label>
@@ -74,7 +78,12 @@
             <input name="date" type="date" th:field="*{date}" id="date" class="form-control" placeholder="Datum" required="required" />
         </div>
 
-        <button id="login" class="btn btn-lg btn-primary btn-block" type="submit">Přidat jídlo</button>
+        <span th:if="${food.id == null}">
+          <button id="add" class="btn btn-lg btn-primary btn-block" type="submit">Přidat jídlo</button>
+        </span>
+        <span th:if="${food.id != null}">
+          <button id="edit" class="btn btn-lg btn-primary btn-block" type="submit">Upravit jídlo</button>
+        </span>
       </form>
     </div> <!-- /container -->
 

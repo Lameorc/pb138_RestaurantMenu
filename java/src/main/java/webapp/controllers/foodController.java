@@ -36,12 +36,18 @@ public class foodController {
     public String foodSubmit(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, @ModelAttribute @Valid Food food, BindingResult bindingResult, Model model) {
 
         food.setDate(date);
-        model.addAttribute("food", food);
+        //model.addAttribute("food", food);
 
         FoodManager foodManager = (FoodManager) context.getBean("foodManager");
-        foodManager.createFood(food);
 
-        return "food";
+        if (food.getId() == 0) {
+            foodManager.createFood(food);
+        } else {
+            foodManager.updateFood(food);
+        }
+
+
+        return "redirect:/food";
     }
 
     @RequestMapping("food/delete/{id}")
@@ -51,6 +57,15 @@ public class foodController {
         foodManager.removeFood(id);
 
         return "redirect:/";
+    }
+
+    @RequestMapping("/food/edit/{id}")
+    public String editFood(@PathVariable("id") long id,  Model model){
+        FoodManager foodManager = (FoodManager) context.getBean("foodManager");
+        Food food = foodManager.findFood(id);
+
+        model.addAttribute("food", food);
+        return "food";
     }
 
 }
