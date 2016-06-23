@@ -1,5 +1,7 @@
 package backend.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 /**
@@ -7,7 +9,9 @@ import java.time.LocalDate;
  */
 public class Menu {
     private Long id;
+    @DateTimeFormat (pattern="dd. MM. YYYY")
     private LocalDate startDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate endDate;
 
     public long getId() {

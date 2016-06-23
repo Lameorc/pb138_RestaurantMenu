@@ -50,10 +50,10 @@
       </div> </nav>
 
     <div class="container">
-      <div class="row">
+      <div class="row" th:each="menu : ${menus}">
         <div class="col-md-12">
 
-          <h2>13. 6. 2016 - 19. 6. 2016</h2>
+          <h2 th:text="${menu.startDate} + ' - ' + ${menu.endDate}">13. 6. 2016 - 19. 6. 2016</h2>
           <br/>
 
           <table class="table table-hover table-condensed">
@@ -74,38 +74,6 @@
             </tbody>
           </table>
 
-          <table class="table table-hover table-condensed">
-            <thead>
-              <th><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 14. 6. 2016</th>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1.</td>
-                <td>Vepřová panenka v bramboráku, zeleninová obloha</td>
-                <td>84 ,-</td>
-                <td><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td> </tr>
-              <tr>
-                <td>2.</td>
-                <td>Kuřecí prsíčka zapečená s broskví a sýrem,opékané brambory</td>
-                <td>84 ,-</td>
-                <td><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td> </tr>
-              <tr>
-                <td>3.</td>
-                <td>Pražská hovězí pečeně, jasmínová rýže</td>
-                <td>84 ,-</td>
-                <td><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td> </tr>
-              <tr>
-                <td>4.</td>
-                <td>Zeleninový talíř, pečená aljašská treska na másle, dressing, pečivo</td>
-                <td>84 ,-</td>
-                <td><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td> </tr>
-              <tr>
-                <td>5.</td>
-                <td>Zeleninový talíř, kuřecí smaženky, dressing, pečivo</td>
-                <td>84 ,-</td>
-                <td><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td> </tr>
-            </tbody>
-          </table>
         </div>
       </div>
     </div> <!-- /container -->
