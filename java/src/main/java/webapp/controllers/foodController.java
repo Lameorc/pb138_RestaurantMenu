@@ -1,7 +1,9 @@
 package webapp.controllers;
 
 import backend.Managers.FoodManager;
+import backend.Managers.MenuManager;
 import backend.entities.Food;
+import backend.entities.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -35,12 +37,21 @@ public class foodController {
     @RequestMapping(value="/food", method=RequestMethod.POST)
     public String foodSubmit(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, @ModelAttribute @Valid Food food, BindingResult bindingResult, Model model) {
 
+        MenuManager menuManager = (MenuManager) context.getBean("menuManager");
+        List<Menu> menus = menuManager.getAllMenus();
+
+        menus.removeIf(m ->
+                !(m.getStartDate().isBefore(LocalDate.now())
+                        && m.getEndDate().isAfter(LocalDate.now())));
+
+
+        food.setMenuId(menus.get(0).getId());
         food.setDate(date);
-        //model.addAttribute("food", food);
+
 
         FoodManager foodManager = (FoodManager) context.getBean("foodManager");
 
-        if (food.getId() == 0) {
+        if (food.getId() == null) {
             foodManager.createFood(food);
         } else {
             foodManager.updateFood(food);
