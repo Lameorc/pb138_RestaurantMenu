@@ -70,6 +70,11 @@ public class FoodManagerImpl implements FoodManager {
     }
 
     @Override
+    public void removeFood(long id) {
+        jdbc.update("DELETE FROM food WHERE id=? ", id);
+    }
+
+    @Override
     public Food findFood(Long id) {
         if(id == null){
             throw new IllegalArgumentException("Id can't be null when finding food");

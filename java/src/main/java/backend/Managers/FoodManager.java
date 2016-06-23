@@ -11,6 +11,7 @@ public interface FoodManager {
     void createFood(Food food);
     void updateFood(Food food);
     void removeFood(Food food);
+    void removeFood(long id);
     Food findFood(Long id);
     List<Food> getAllFood();
 }
