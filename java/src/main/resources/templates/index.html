@@ -61,31 +61,14 @@
               <th><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 13. 6. 2016</th>
             </thead>
             <tbody>
-              <tr>
-                <td>1.</td>
-                <td>Smažený květák, vařené nové brambory s máslem</td>
-                <td>84 ,-</td>
-                <td><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td> </tr>
-              <tr>
-                <td>2.</td>
-                <td>Vepřový přírodní řízek zapečený se salámem a nivou, hranolky</td>
-                <td>84 ,-</td>
-                <td><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td> </tr>
-              <tr>
-                <td>3.</td>
-                <td>Pečená kuřecí kapsa s listovým penátem a mozarellou, kari rýže</td>
-                <td>84 ,-</td>
-                <td><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td> </tr>
-              <tr>
-                <td>4.</td>
-                <td>Smažený hermelín v bramboráku, zeleninová obloha</td>
-                <td>84 ,-</td>
-                <td><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td> </tr>
-              <tr>
-                <td>5.</td>
-                <td>Zeleninový talíř, kuřecí smaženky, dressing, pečivo</td>
-                <td>84 ,-</td>
-                <td><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td> </tr>
+
+              <tr th:each="food, i : ${foods}">
+                <td th:text="${i.count} + '.'"></td>
+                <td th:text="${food.name}"></td>
+                <td th:text="${food.price} + ' ,-'"></td>
+                <td><a th:href="${food.id}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td>
+              </tr>
+
             </tbody>
           </table>
 
