@@ -52,8 +52,13 @@
     <div class="container">
       <p th:if="${param.error}" class="alert alert-error">There was an error, please try again</p>
       <form th:action="@{/food}" th:object="${food}" method="post" class="form-add-food">
-        <h2 class="form-signin-heading">Přidat jídlo</h2>
-
+        <span th:if="${food.id == null}">
+          <h2 class="form-signin-heading">Přidat jídlo</h2>
+        </span>
+        <span th:if="${food.id != null}">
+          <h2 class="form-signin-heading">Upravit jídlo</h2>
+        </span>
+        
         <div class="form-group">
           <input name="id" type="hidden" th:field="*{id}" id="id" class="form-control" />
         </div>
