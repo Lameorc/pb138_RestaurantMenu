@@ -39,16 +39,17 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/" th:href="@{/}"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Jídelní lístek</a></li>
-            <li><a href="food" th:href="@{/food}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Přidat jídlo</a></li>
+            <li th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"><a href="/" th:href="@{/}"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Jídelní lístek</a></li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')" th:classappend="${#httpServletRequest.getRequestURI() == '/food' ? 'active':''}"><a href="food" th:href="@{/food}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Přidat jídlo</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">        
+          <ul class="nav navbar-nav navbar-right">
               <li sec:authorize="hasRole('ROLE_USER')">
                   <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
                       <input hidden="hidden" type="submit" value="Sign Out"/>
                   </form> 
-                  <a href="javascript: document.logoutForm.submit()">Odhlásit se</a></li>
-            <li sec:authorize="!hasRole('ROLE_USER')"><a href="login" th:href="@{/login}">Přihlásit se</a></li>
+                  <a href="javascript: document.logoutForm.submit()">Odhlásit se</a>
+              </li>
+            <li th:classappend="${#httpServletRequest.getRequestURI() == '/login' ? 'active':''}" sec:authorize="!hasRole('ROLE_USER')"><a href="login" th:href="@{/login}">Přihlásit se</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div> </nav>
@@ -56,6 +57,7 @@
     <div class="container">
       <div class="row" th:each="menu : ${menus}">
         <div class="col-md-12">
+
           <h2 th:text="${menu.startDate} + ' - ' + ${menu.endDate}">13. 6. 2016 - 19. 6. 2016</h2>
           <br/>
 
@@ -69,9 +71,9 @@
                 <td th:text="${i.count} + '.'"></td>
                 <td th:text="${food.name}"></td>
                 <td th:text="${food.price} + ' ,-'"></td>
-                <td><a th:href="${food.id}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td>
-                <td><a th:href="@{/food/edit/{id}(id=${food.id})}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Upravit</a></td>
-                <td><a th:href="@{/food/delete/{id}(id=${food.id})}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Smazat</a></td>
+                <td><a sec:authorize="hasRole('ROLE_USER')" th:href="${food.id}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td>
+                <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/food/edit/{id}(id=${food.id})}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Upravit</a></td>
+                <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/food/delete/{id}(id=${food.id})}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Smazat</a></td>
               </tr>
 
             </tbody>
