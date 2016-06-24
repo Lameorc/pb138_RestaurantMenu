@@ -26,7 +26,7 @@
   <body>
 
     <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav th:fragment="navbarFragment" class="navbar navbar-default navbar-static-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -42,9 +42,13 @@
             <li class="active"><a href="/" th:href="@{/}"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Jídelní lístek</a></li>
             <li><a href="food" th:href="@{/food}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Přidat jídlo</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li sec:authorize="IsAnonymous()"><a href="login" th:href="@{/login}">Přihlásit se</a></li>
-            <li sec:authorize="IsAuthenticated()"><form th:action="@{/logout}" method="POST"></form></li>
+          <ul class="nav navbar-nav navbar-right">        
+              <li sec:authorize="hasRole('ROLE_USER')">
+                  <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                      <input hidden="hidden" type="submit" value="Sign Out"/>
+                  </form> 
+                  <a href="javascript: document.logoutForm.submit()">Odhlásit se</a></li>
+            <li sec:authorize="!hasRole('ROLE_USER')"><a href="login" th:href="@{/login}">Přihlásit se</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div> </nav>
@@ -52,7 +56,6 @@
     <div class="container">
       <div class="row" th:each="menu : ${menus}">
         <div class="col-md-12">
-
           <h2 th:text="${menu.startDate} + ' - ' + ${menu.endDate}">13. 6. 2016 - 19. 6. 2016</h2>
           <br/>
 
