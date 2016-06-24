@@ -22,5 +22,15 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <bean id="menuManager" class="backend.Managers.MenuManagerImpl" scope="singleton">
         <constructor-arg ref="dataSource"/>
     </bean>
-
+    
+    <bean id="templateEngine"
+               class="org.thymeleaf.spring4.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver" />
+        <property name="additionalDialects">
+        <set>
+          <!-- Note the package would change to 'springsecurity3' if you are using that version -->
+          <bean class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect"/>
+        </set>
+      </property>
+    </bean>
 </beans>
