@@ -2,6 +2,7 @@ package backend.Managers;
 
 import backend.entities.Food;
 import backend.entities.Menu;
+import backend.utils.FoodMapper;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -90,5 +91,12 @@ public class MenuManagerImpl implements MenuManager {
         }
         jdbc.update("UPDATE food set MENU_ID=? where id=?",
                     menu.getId(), food.getId());
+    }
+
+    @Override
+    public List<Food> getFoodInMenu(Menu menu) {
+        List<Food> food = jdbc.query("SELECT * FROM food WHERE menu_id = ?",
+                (rs, row)-> new FoodMapper().mapRow(rs, row), menu.getId());
+        return food;
     }
 }

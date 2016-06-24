@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Vojta Podhajsky on 18.06.2016.
@@ -32,10 +32,20 @@ public class indexController {
                         && m.getEndDate().isAfter(LocalDate.now())));
         model.addAttribute("menus", menus);
 
+        TreeMap<LocalDate, List<Food>> foodMap = new TreeMap<>();
+        for (Menu menu : menus){
+            for(Food f : menuManager.getFoodInMenu(menu)){
+                LinkedList<Food> food =  new LinkedList<Food>();
+                food.add(f);
+                foodMap.merge(f.getDate(), food,(l1, l2) -> {l1.addAll(l2); return l1;});
+            }
+        }
+        model.addAttribute("foodMap", foodMap);
 
+        //TODO use "foodMap" instead of "foods"
         FoodManager foodManager = (FoodManager) context.getBean("foodManager");
         List<Food> foods = foodManager.getAllFood();
-        model.addAttribute("foods", foods);
+        //model.addAttribute("foods", foods);
 
         return "index";
     }
