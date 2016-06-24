@@ -61,21 +61,19 @@
           <h2 th:text="${menu.startDate} + ' - ' + ${menu.endDate}">13. 6. 2016 - 19. 6. 2016</h2>
           <br/>
 
-          <table class="table table-hover table-condensed">
+          <table th:each="entry : ${foodMap}" class="table table-hover table-condensed">
             <thead>
-              <th><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 13. 6. 2016</th>
+              <th th:text="${entry.key}"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 13. 6. 2016</th>
             </thead>
             <tbody>
-
-              <tr th:each="food, i : ${foods}">
-                <td th:text="${i.count} + '.'"></td>
-                <td th:text="${food.name}"></td>
-                <td th:text="${food.price} + ' ,-'"></td>
-                <td><a sec:authorize="hasRole('ROLE_USER')" th:href="${food.id}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td>
-                <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/food/edit/{id}(id=${food.id})}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Upravit</a></td>
-                <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/food/delete/{id}(id=${food.id})}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Smazat</a></td>
-              </tr>
-
+                <tr th:each="food, i : ${entry.value}">
+                  <td th:text="${i.count} + '.'"></td>
+                  <td th:text="${food.name}"></td>
+                  <td th:text="${food.price} + ' ,-'"></td>
+                  <td><a sec:authorize="hasRole('ROLE_USER')" th:href="${food.id}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td>
+                  <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/food/edit/{id}(id=${food.id})}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Upravit</a></td>
+                  <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/food/delete/{id}(id=${food.id})}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Smazat</a></td>
+                </tr>
             </tbody>
           </table>
 
