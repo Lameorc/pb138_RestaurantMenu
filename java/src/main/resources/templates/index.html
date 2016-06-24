@@ -58,12 +58,12 @@
       <div class="row" th:each="menu : ${menus}">
         <div class="col-md-12">
 
-          <h2 th:text="'Denní menu '+ ${menu.startDate} + ' - ' + ${menu.endDate}">13. 6. 2016 - 19. 6. 2016</h2>
+          <h2 th:text="'Denní menu '+ ${#temporals.format(menu.startDate, 'd. M. YYYY')} + ' - ' + ${#temporals.format(menu.endDate, 'd. M. YYYY')}">13. 6. 2016 - 19. 6. 2016</h2>
           <br/>
 
           <table th:each="entry : ${foodMap}" class="table table-hover table-condensed">
             <thead>
-              <th class="col-md-2"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> <span th:text="${entry.key}"></span></th>
+              <th class="col-md-2"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> <span th:text="${#temporals.format(entry.key, 'd. M. YYYY')}"></span></th>
             </thead>
             <tbody>
                 <tr th:each="food, i : ${entry.value}">

@@ -30,6 +30,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         <set>
           <!-- Note the package would change to 'springsecurity3' if you are using that version -->
           <bean class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect"/>
+          <bean class="org.thymeleaf.extras.java8time.dialect.Java8TimeDialect"/>
         </set>
       </property>
     </bean>
