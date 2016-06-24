@@ -19,5 +19,11 @@ CREATE  TABLE users (
     PRIMARY KEY (username));
 
 CREATE TABLE authorities (
-    username  varchar(45) REFERENCES users(username) NOT NULL,
+    username  varchar(45) REFERENCES users(username) ON DELETE CASCADE ,
     authority varchar(45) NOT NULL);
+
+CREATE TABLE reservation(
+    person VARCHAR(45)  REFERENCES users(username) ON DELETE CASCADE,
+    food_id INT REFERENCES food(id)ON DELETE CASCADE,
+    PRIMARY KEY (person, food_id)
+)
