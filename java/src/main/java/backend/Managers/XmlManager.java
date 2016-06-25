@@ -1,18 +1,11 @@
 package backend.Managers;
 
-import backend.utils.Exceptions.XmlValidationException;
-import backend.utils.XmlOutputObject;
+import backend.xmlObjects.Menus;
 import org.springframework.oxm.Marshaller;
 import org.springframework.oxm.Unmarshaller;
-import org.xml.sax.SAXException;
 
-import javax.xml.XMLConstants;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import javax.xml.validation.Validator;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -24,34 +17,25 @@ import java.io.IOException;
 public class XmlManager {
 
     private String xmlSchema;
+    private Marshaller marshaller;
+    private Unmarshaller unmarshaller;
 
-    public XmlOutputObject parseXml(String xmlFile){
-        XmlOutputObject object = new XmlOutputObject();
-        object.setFood(null);
-        object.setMenu(null);
-        if(validateXml(xmlFile)){
-            throw new XmlValidationException("Xml file is not valid against the schema");
-        }
-
-        return object;
+    public Marshaller getMarshaller() {
+        return marshaller;
     }
 
-    public void generateXml(String xmlFile){
-
+    public void setMarshaller(Marshaller marshaller) {
+        this.marshaller = marshaller;
     }
 
-    public boolean validateXml(String xmlFile){
-        try{
-            SchemaFactory factory =
-                    SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema schema = factory.newSchema(new StreamSource(xmlSchema));
-            Validator validator = schema.newValidator();
-            validator.validate(new StreamSource(xmlFile));
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
+    public Unmarshaller getUnmarshaller() {
+        return unmarshaller;
     }
+
+    public void setUnmarshaller(Unmarshaller unmarshaller) {
+        this.unmarshaller = unmarshaller;
+    }
+
 
     public void setXmlSchema(String xmlSchema) {
         this.xmlSchema = xmlSchema;
@@ -59,5 +43,26 @@ public class XmlManager {
 
     public String getXmlSchema() {
         return xmlSchema;
+    }
+
+
+    public Menus parseXml(String xmlFile) throws IOException {
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(xmlFile);
+            return (Menus) unmarshaller.unmarshal(new StreamSource(fis));
+        } finally {
+            fis.close();
+        }
+    }
+
+    public void generateXml(String xmlFile, Menus menus) throws IOException{
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(xmlFile);
+            marshaller.marshal(menus, new StreamResult(fos));
+        } finally {
+            fos.close();
+        }
     }
 }

@@ -130,6 +130,15 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
+        <!--XML-->
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-oxm</artifactId>
+            <version>4.3.0.RELEASE</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>

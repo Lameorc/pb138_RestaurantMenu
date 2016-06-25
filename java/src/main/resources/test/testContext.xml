@@ -7,39 +7,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
-<context:property-placeholder location="classpath:conf.properties"/>
+    <context:property-placeholder location="classpath:conf.properties"/>
     <tx:annotation-driven/>
-    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
-        <property name="driverClassName" value="${jdbc.driver}"/>
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.user}"/>
-        <property name="password" value="${jdbc.password}"/>
-    </bean>
-
-    <bean id="foodManager" class="backend.Managers.FoodManagerImpl" scope="singleton">
-        <constructor-arg ref="dataSource"/>
-    </bean>
-    <bean id="menuManager" class="backend.Managers.MenuManagerImpl" scope="singleton">
-        <constructor-arg ref="dataSource"/>
-    </bean>
-    
-    <bean id="templateEngine"
-               class="org.thymeleaf.spring4.SpringTemplateEngine">
-        <property name="templateResolver" ref="templateResolver" />
-        <property name="additionalDialects">
-        <set>
-          <!-- Note the package would change to 'springsecurity3' if you are using that version -->
-          <bean class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect"/>
-          <bean class="org.thymeleaf.extras.java8time.dialect.Java8TimeDialect"/>
-        </set>
-      </property>
-    </bean>
 
     <bean id="jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
         <property name="classesToBeBound">
             <list>
-                <value>backend.entities.Food</value>
-                <value>backend.xmlObjects.FoodList</value>
+                <value>backend.xmlObjects.Menus</value>
+                <value>backend.xmlObjects.Day</value>
+                <value>backend.xmlObjects.Meal</value>
             </list>
         </property>
         <property name="schema" value="classpath:xml/xml_scheme.xsd"/>

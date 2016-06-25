@@ -2,6 +2,7 @@ package backend.entities;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.xml.bind.annotation.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 

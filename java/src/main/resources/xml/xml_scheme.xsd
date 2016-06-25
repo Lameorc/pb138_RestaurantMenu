@@ -5,7 +5,7 @@
            
     <xs:element name="menus">
               <xs:complexType>
-                <xs:sequence>
+                <xs:sequence maxOccurs="unbounded">
                     <xs:element name="day" type="day-type"/>
                 </xs:sequence>
               </xs:complexType>        
@@ -13,41 +13,27 @@
       
       <xs:complexType name="day-type">
         <xs:sequence>
-           <xs:element name="soup" type="soup-type"/>
            <xs:element name="meals">
             <xs:complexType>
-                <xs:sequence>
+                <xs:sequence maxOccurs="unbounded">
                   <xs:element name="meal" type="meal-type"/>
                 </xs:sequence>
             </xs:complexType>
           </xs:element>
         </xs:sequence>
-        <xs:attribute name="name" use="required" type="xs:string">
+        <xs:attribute name="name" use="required" type="xs:string"/>
         <xs:attribute name="date" use="required" type="xs:date"/>
       </xs:complexType>
-      
-      <xs:complexType name="soup-type">
-        <xs:sequence>
-           <xs:element name="name" type="name-type"/>
-           <xs:element name="price" type="xs:integer"/>
-        </xs:sequence>
-      </xs:complexType>
-      
+
       <xs:complexType name="meal-type">
           <xs:sequence>
             <xs:element name="weight" type="xs:string"/>
-            <xs:element name="name" type="name-type"/>
+            <xs:element name="name" type="xs:string"/>
             <xs:element name="price" type="xs:integer"/>
           </xs:sequence>
           <xs:attribute name="number" use="required" type="number-type"/>
       </xs:complexType>
-           
-      <xs:simpleType name="name-type">
-          <xs:restriction base="xs:string">
-              <xs:pattern value="([A-Z]{1}([a-z])*)+ ([A-Z]{1}([a-z])*)+"/> 
-          </xs:restriction>
-      </xs:simpleType>
-          
+
       <xs:simpleType name="number-type">
         <xs:restriction base="xs:integer">
            <xs:pattern value="[0-9]"/>
