@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menus>
+  <day date="20.6.2016" name="pondělí">
+    <soup><name>Rajská polévka</name><price>19 Kč</price></soup>
+    <meals>
+      <meal number="1"><weight>150g</weight><name>Dalmátské čufty, vařené brambory</name><price>89 Kč</price></meal>
+      <meal number="2"><weight>150g</weight><name>Srdce na smetaně, houskový knedlík</name><price>99 Kč</price></meal>
+    </meals>
+  </day>     
+  
+  <day date="21.6.2016" name="úterý">
+    <soup><name>Rajská polévka</name><price>19 Kč</price></soup>
+    <meals>
+      <meal number="1"><weight>150g</weight><name>Dalmátské čufty, vařené brambory</name><price>89 Kč</price></meal>
+      <meal number="2"><weight>150g</weight><name>Srdce na smetaně, houskový knedlík</name><price>99 Kč</price></meal>
+    </meals>
+  </day> 
+  
+  <day date="22.6.2016" name="středa">
+    <soup><name>Rajská polévka</name><price>19 Kč</price></soup>
+    <meals>
+      <meal number="1"><weight>150g</weight><name>Dalmátské čufty, vařené brambory</name><price>89 Kč</price></meal>
+      <meal number="2"><weight>150g</weight><name>Srdce na smetaně, houskový knedlík</name><price>99 Kč</price></meal>
+    </meals>
+  </day> 
+  
+  <day date="23.6.2016" name="čtvrtek">
+    <soup><name>Rajská polévka</name><price>19 Kč</price></soup>
+    <meals>
+      <meal number="1"><weight>150g</weight><name>Dalmátské čufty, vařené brambory</name><price>89 Kč</price></meal>
+      <meal number="2"><weight>150g</weight><name>Srdce na smetaně, houskový knedlík</name><price>99 Kč</price></meal>
+    </meals>
+  </day> 
+  
+  <day date="24.6.2016" name="pátek">
+    <soup><name>Rajská polévka</name><price>19 Kč</price></soup>
+    <meals>
+      <meal number="1"><weight>150g</weight><name>Dalmátské čufty, vařené brambory</name><price>89 Kč</price></meal>
+      <meal number="2"><weight>150g</weight><name>Srdce na smetaně, houskový knedlík</name><price>99 Kč</price></meal>
+    </meals>
+  </day>                              
+</menus>
+
