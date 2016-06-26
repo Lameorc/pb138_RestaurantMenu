@@ -30,5 +30,6 @@
             <para>
                 Pro mapovaní objektů na xml a zpět je použita implementace marshalleru jaxb2 z knihovny spring.integration. Objekty jsou pro zjednodušení konfigurace marshalleru napamovány 1:1 k java objektům a až tyto objekty jsou následně použity pro instanciaci objektů použitých na webu a v databázi.
             </para>
+        </section>
     </articleinfo>
 </article>
