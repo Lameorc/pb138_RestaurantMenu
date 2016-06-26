@@ -13,13 +13,8 @@
     <xsl:template match="day">
       <xsl:for-each select="menus/day">
         <b><xsl:value-of select="./@name"/> <xsl:value-of select="./@date"/></b><br/>
-        <xsl:apply-templates select="soup"/>
         <xsl:apply-templates select="meal"/> 
        </xsl:for-each>    
-    </xsl:template>
-    
-    <xsl:template match="soup">
-      Polévka: <xsl:value-of select="./soup/name/text()"/> <xsl:value-of select="./soup/price/text()"/><br/>
     </xsl:template>
     
     <xsl:template match="meal">

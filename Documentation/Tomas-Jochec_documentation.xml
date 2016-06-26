@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<article>
+    <articleinfo>
+        <author>
+            <title>Shrnutí práce</title>
+            <subtitle>Správa denního menu</subtitle>
+            <firstname>Tomáš</firstname>
+            <surname>Jochec</surname>
+        </author>
+
+        <section>
+            <title>Shrnutí práce</title>
+            <para>
+                Na projektu jsem se podílel návrhem a tvorbou uživatelského webového rozhraní a jeho grafickým zpracováním.
+            </para>
+        </section>
+
+        <section>
+            <title>Webové rozhraní</title>
+            <para>
+                Aplikace využívá Spring framework a šablonovací systém Thymeleaf.
+            </para>
+            <para>
+                HTML stránky jsou postavené na frameworku Bootstrap od Twitteru. Uživatelské prostředí bylo navrženo tak, aby bylo přehledné a uživatel se v něm dokázal rychle zorientovat.
+            </para>
+        </section>
+    </articleinfo>
+</article>
