@@ -12,15 +12,9 @@
       </xs:element>
       
       <xs:complexType name="day-type">
-        <xs:sequence>
-           <xs:element name="meals">
-            <xs:complexType>
-                <xs:sequence maxOccurs="unbounded">
-                  <xs:element name="meal" type="meal-type"/>
-                </xs:sequence>
-            </xs:complexType>
-          </xs:element>
-        </xs:sequence>
+          <xs:sequence maxOccurs="unbounded">
+              <xs:element name="meal" type="meal-type"/>
+          </xs:sequence>
         <xs:attribute name="name" use="required" type="xs:string"/>
         <xs:attribute name="date" use="required" type="xs:date"/>
       </xs:complexType>

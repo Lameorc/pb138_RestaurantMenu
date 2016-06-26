@@ -1,36 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menus>
   <day date="2016-06-20" name="pondělí">
-    <meals>
       <meal number="1"><weight>150g</weight><name>Dalmátské čufty, vařené brambory</name><price>89</price></meal>
       <meal number="2"><weight>150g</weight><name>Srdce na smetaně, houskový knedlík</name><price>99</price></meal>
-    </meals>
-  </day>     
+  </day>
   
   <day date="2016-06-21" name="úterý">
-    <meals>
       <meal number="1"><weight>150g</weight><name>Dalmátské čufty, vařené brambory</name><price>89</price></meal>
       <meal number="2"><weight>150g</weight><name>Srdce na smetaně, houskový knedlík</name><price>99</price></meal>
-    </meals>
   </day>
   <day date="2016-06-22" name="středa">
-    <meals>
       <meal number="1"><weight>150g</weight><name>Dalmátské čufty, vařené brambory</name><price>89</price></meal>
       <meal number="2"><weight>150g</weight><name>Srdce na smetaně, houskový knedlík</name><price>99</price></meal>
-    </meals>
   </day>
   <day date="2016-06-23" name="čtvrtek">
-    <meals>
       <meal number="1"><weight>150g</weight><name>Dalmátské čufty, vařené brambory</name><price>89</price></meal>
       <meal number="2"><weight>150g</weight><name>Srdce na smetaně, houskový knedlík</name><price>99</price></meal>
-    </meals>
   </day> 
   
   <day date="2016-06-24" name="pátek">
-    <meals>
       <meal number="1"><weight>150g</weight><name>Dalmátské čufty, vařené brambory</name><price>89</price></meal>
       <meal number="2"><weight>150g</weight><name>Srdce na smetaně, houskový knedlík</name><price>99</price></meal>
-    </meals>
   </day>                              
 </menus>
 
