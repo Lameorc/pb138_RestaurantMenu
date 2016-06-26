@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<article>
+    <articleinfo>
+        <author>
+            <title>Shrnutí práce</title>
+            <subtitle>Správa denního menu</subtitle>
+            <firstname>Vojtěch</firstname>
+            <surname>Podhajský</surname>
+        </author>
+        <section>
+            <title>Shrnutí práce</title>
+            <para>
+                Mým ůkolem v projektu byla implementace backendové části aplikace. Implementoval jsem většinu manažerů pro práci s databázi a xml. Dále jsem zavedl většinu konfigurace pro maven a část spring context.
+            </para>
+        </section>
+        <section>
+            <title>Backend</title>
+            <para>
+                V aplikaci je použita databáze Derby a server Tomcat. Pro komunikaci s databázi je použito rozhraní jdbc. 
+            </para>
+            <para>
+                Manažery jsou pomocí springu namapovány do aplikačního contextu, aby je bylo možné volat odkudkoliv s aplikace bez nutnosti vytváření připojení k databázi.
+            </para>
+        </section>
+        <section>
+            <title>
+                Object/XML mapping
+            </title>
+            <para>
+                Pro mapovaní objektů na xml a zpět je použita implementace marshalleru jaxb2 z knihovny spring.integration. Objekty jsou pro zjednodušení konfigurace marshalleru napamovány 1:1 k java objektům a až tyto objekty jsou následně použity pro instanciaci objektů použitých na webu a v databázi.
+            </para>
+    </articleinfo>
+</article>
