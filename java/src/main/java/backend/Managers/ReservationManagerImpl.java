@@ -54,6 +54,18 @@ public class ReservationManagerImpl implements ReservationManager {
     }
 
     @Override
+    public void cancelReservationByUser(Long foodId, String userName) {
+        if(foodId == null){
+            throw new IllegalArgumentException("Food can't be null");
+        }
+        if(userName == null){
+            throw new IllegalArgumentException("UserName can't be null");
+        }
+        jdbc.update("DELETE FROM RESERVATION WHERE PERSON = ? AND FOOD_ID = ?",
+                "'" + userName + "'", foodId);
+    }
+
+    @Override
     public List<Food> getFoodReservedByUser(String userName) {
         if(userName == null){
             throw new IllegalArgumentException("UserName can't be null");

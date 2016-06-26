@@ -11,5 +11,6 @@ import java.util.List;
 public interface ReservationManager {
     List<Reservation> getAllReservations();
     void reserveFoodByUser(Long foodId, String userName);
+    void cancelReservationByUser(Long foodId, String userName);
     List<Food> getFoodReservedByUser(String userName);
 }
