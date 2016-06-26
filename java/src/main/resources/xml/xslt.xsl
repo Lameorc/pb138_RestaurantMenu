@@ -10,27 +10,34 @@
     />
     <xsl:template match="menus">
         <HTML>
-          <HEAD> <style> ul li {list-style-type: none} </style></HEAD>
+          <HEAD><style>th, td {border-bottom: 1px solid black }</style></HEAD>
           <BODY>
-            <h1> Jídelní lístek </h1>
-            <ul>  
+            <h1> Denní menu <xsl:value-of select=
+  "//day[@name= 'pondělí']/@date"/> - <xsl:value-of select=
+  "//day[@name= 'pátek']/@date"/></h1>
+            <table>  
                 <xsl:apply-templates select="day"/>  
-            </ul>
+            </table>
           </BODY>
         </HTML>
     </xsl:template>
 
     <xsl:template match="day"> 
-      <li>
-        <b><xsl:value-of select="@name"/> - <xsl:value-of select="@date"/></b><br/> 
+      <tr><th>
+        <b><xsl:value-of select="@name"/> - <xsl:value-of select="@date"/></b><br/> </th></tr>
+       
         <xsl:apply-templates select="meal"/> 
-      </li><br/>
+
+      <br/>
     </xsl:template>
     
-    <xsl:template match="meal">      
+    <xsl:template match="meal"> 
+<tr>
+       <td> 
         <b> <xsl:value-of select="@number"/>. </b> <xsl:value-of select="weight/text()"/><xsl:text> </xsl:text>
         <xsl:value-of select="name/text()"/> <xsl:text> </xsl:text>
-<xsl:value-of select="price/text()"/> Kč <br/>  
+<xsl:value-of select="price/text()"/> Kč 
+</td> </tr>
     </xsl:template> 
 
 </xsl:stylesheet>
