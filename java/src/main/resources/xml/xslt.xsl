@@ -4,8 +4,7 @@
     <xsl:template match="/">
         <HTML>
           <HEAD><title>Jídelní lístek</title></HEAD>
-          <BODY style="font-family: Arial, helvetica, sans-serif;
-                       font-size:12px; background-color:#EEE">
+          <BODY>
               <xsl:apply-templates select="day"/>
           </BODY>
         </HTML>
