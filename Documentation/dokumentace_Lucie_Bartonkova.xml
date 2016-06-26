@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<book>
+	<bookinfo>
+		<author>
+			<title>Záverečná správa</title>
+        		<subtitle>Správa denního menu</subtitle>
+            	<firstname>Lucie</firstname>
+            	<surname>Bartoňková</surname>
+      	</author>
+
+        	<section>
+        		<title>Záverečná správa</title>
+	        	<para>
+	        		Moje práce na projektu obsahuje:
+              - vytvoření základního XML
+              - vytvořneí transformace XSLT pro tisk
+              - vytvoření XSL schematu
+              - závěrečná dokumentace
+	        	</para>
+    		</section>        
+	</bookinfo>
+</book>
