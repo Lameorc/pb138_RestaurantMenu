@@ -62,11 +62,4 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         <property name="xmlSchema" value="classpath:xml/xml_scheme.xsd"/>
     </bean>
 
-    <bean id="xsltPayloadTransformer" class="org.springframework.integration.xml.transformer.XsltPayloadTransformer">
-        <constructor-arg value="classpath:"/>
-        <constructor-arg>
-            <bean class="org.springframework.integration.xml.transformer.ResultToDocumentTransformer"/>
-        </constructor-arg>
-    </bean>
-
 </beans>
