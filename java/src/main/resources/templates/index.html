@@ -41,6 +41,7 @@
           <ul class="nav navbar-nav">
             <li th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"><a href="/" th:href="@{/}"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Jídelní lístek</a></li>
             <li sec:authorize="hasRole('ROLE_ADMIN')" th:classappend="${#httpServletRequest.getRequestURI() == '/food' ? 'active':''}"><a href="food" th:href="@{/food}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Přidat jídlo</a></li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')" th:classappend="${#httpServletRequest.getRequestURI() == '/import' ? 'active':''}"><a href="food" th:href="@{/import}"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Importovat z XML</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
               <li sec:authorize="hasRole('ROLE_USER')">

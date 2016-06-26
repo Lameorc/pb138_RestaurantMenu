@@ -27,6 +27,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/food")
                 .hasAuthority("ROLE_ADMIN")
+                .antMatchers("/import")
+                .hasAuthority("ROLE_ADMIN")
                 .antMatchers("/css/**")
                 .permitAll()
                 .antMatchers("/js")
