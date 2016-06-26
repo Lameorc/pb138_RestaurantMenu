@@ -16,8 +16,8 @@
                  </style></HEAD>
           <BODY>
             <h1 align="center"> Denní menu <br/>
-            <xsl:value-of select="//day[@name='pondělí']/@date"/>-
-            <xsl:value-of select="//day[@name= 'pátek']/@date"/></h1><br/>
+            <xsl:value-of select="//day[1]/@date"/>-
+            <xsl:value-of select="//day[last()]/@date"/></h1><br/>
             <table align="center">  
                 <xsl:apply-templates select="day"/>  
             </table>
