@@ -5,7 +5,7 @@
         <HTML>
           <HEAD><title>Jídelní lístek</title></HEAD>
           <BODY>
-              <xsl:apply-templates select="day"/>
+              <xsl:call-template select="day"/>
           </BODY>
         </HTML>
     </xsl:template>
