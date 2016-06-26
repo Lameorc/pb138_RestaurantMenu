@@ -18,6 +18,7 @@ public class Meal {
     @XmlAttribute(name="number")
     private Integer number;
 
+
     public String getWeight() {
         return weight;
     }

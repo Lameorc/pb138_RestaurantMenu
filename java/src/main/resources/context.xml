@@ -60,13 +60,6 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         <property name="marshaller" ref="jaxb2Marshaller"/>
         <property name="unmarshaller" ref="jaxb2Marshaller"/>
         <property name="xmlSchema" value="classpath:xml/xml_scheme.xsd"/>
+        <property name="xsltTransformation" value="src/main/resources/xml/xslt.xsl"/>
     </bean>
-
-    <bean id="xsltPayloadTransformer" class="org.springframework.integration.xml.transformer.XsltPayloadTransformer">
-        <constructor-arg value="classpath:"/>
-        <constructor-arg>
-            <bean class="org.springframework.integration.xml.transformer.ResultToDocumentTransformer"/>
-        </constructor-arg>
-    </bean>
-
 </beans>

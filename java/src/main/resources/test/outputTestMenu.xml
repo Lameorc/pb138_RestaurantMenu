@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<menus>
+    <day date="2016-06-20+02:00" name="Pondělí">
+        <meal number="1">
+            <weight>150g</weight>
+            <name>Koprovka</name>
+            <price>89</price>
+        </meal>
+        <meal number="2">
+            <weight>150g</weight>
+            <name>Rajská</name>
+            <price>99</price>
+        </meal>
+    </day>
+    <day date="2016-06-20+02:00" name="Pondělí">
+        <meal number="1">
+            <weight>150g</weight>
+            <name>Koprovka</name>
+            <price>89</price>
+        </meal>
+        <meal number="2">
+            <weight>150g</weight>
+            <name>Rajská</name>
+            <price>99</price>
+        </meal>
+    </day>
+</menus>

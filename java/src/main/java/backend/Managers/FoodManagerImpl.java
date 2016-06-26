@@ -35,7 +35,7 @@ public class FoodManagerImpl implements FoodManager {
         SqlParameterSource params = new MapSqlParameterSource()
                 .addValue("food_name", food.getName())
                 .addValue("price", food.getPrice())
-                .addValue("description", food.getDescription())
+                .addValue("description", food.getWeight())
                 .addValue("food_date", Date.valueOf(food.getDate()))
                 .addValue("menu_id", food.getMenuId());
         Number id = insert.executeAndReturnKey(params);
@@ -55,7 +55,7 @@ public class FoodManagerImpl implements FoodManager {
                 + "where id=?",
                 food.getName(),
                 food.getPrice(),
-                food.getDescription(),
+                food.getWeight(),
                 Date.valueOf(food.getDate()),
                 food.getMenuId(),
                 food.getId());

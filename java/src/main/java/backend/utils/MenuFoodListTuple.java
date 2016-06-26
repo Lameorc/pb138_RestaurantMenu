@@ -3,6 +3,7 @@ package backend.utils;
 import backend.entities.Food;
 import backend.entities.Menu;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +16,10 @@ public class MenuFoodListTuple {
     public MenuFoodListTuple(Menu menu, List<Food> foodList) {
         this.menu = menu;
         this.foodList = foodList;
+    }
+
+    public MenuFoodListTuple() {
+        foodList = new ArrayList<>();
     }
 
     public Menu getMenu() {
