@@ -62,4 +62,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         <property name="xmlSchema" value="classpath:xml/xml_scheme.xsd"/>
     </bean>
 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- setting maximum upload size -->
+        <property name="maxUploadSize" value="1048576" />
+    </bean>
 </beans>
