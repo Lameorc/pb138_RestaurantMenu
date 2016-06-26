@@ -2,13 +2,13 @@
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:template match="/">
-    <HTML>
-      <HEAD><title>Jídelní lístek</title></HEAD>
-      <BODY style="font-family: Arial, helvetica, sans-serif;
-                   font-size:12px; background-color:#EEE">
-          <xsl:apply-templates select="day"/>
-      </BODY>
-    </HTML>
+        <HTML>
+          <HEAD><title>Jídelní lístek</title></HEAD>
+          <BODY style="font-family: Arial, helvetica, sans-serif;
+                       font-size:12px; background-color:#EEE">
+              <xsl:apply-templates select="day"/>
+          </BODY>
+        </HTML>
     </xsl:template>
     <xsl:template match="day">
       <xsl:for-each select="menus/day">
