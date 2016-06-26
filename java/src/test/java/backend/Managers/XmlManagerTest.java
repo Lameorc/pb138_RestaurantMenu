@@ -73,6 +73,6 @@ public class XmlManagerTest {
 
     @Test
     public void testXsltGeneration(){
-        manager.generateHtmlFromXml("src/main/resources/test/testMenu.xml", "src/main/resources/test/output.html" );
+        manager.generateHtmlFromXml("src/main/resources/test/outputTestMenu.xml", "src/main/resources/test/output.html" );
     }
 }

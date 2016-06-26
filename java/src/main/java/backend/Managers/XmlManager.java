@@ -23,6 +23,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -117,8 +119,8 @@ public class XmlManager {
             if(day == null){
                 day = new Day();
                 day.setName(translateDayToCzech(f.getDate().getDayOfWeek()));
-                GregorianCalendar gcal = GregorianCalendar.from(f.getDate().atStartOfDay(ZoneId.systemDefault()));
-                XMLGregorianCalendar xcal = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
+                XMLGregorianCalendar xcal = DatatypeFactory.newInstance().
+                        newXMLGregorianCalendar(new SimpleDateFormat("yyyy-MM-dd").format(Date.valueOf(f.getDate())));
                 day.setDate(xcal);
             }
             meal.setName(f.getName());
