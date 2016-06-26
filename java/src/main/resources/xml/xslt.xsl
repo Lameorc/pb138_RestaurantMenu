@@ -12,9 +12,9 @@
         <HTML>
           <HEAD><style>th, td {border-bottom: 1px solid black }</style></HEAD>
           <BODY>
-            <h1> Denní menu <xsl:value-of select=
-  "//day[@name= 'pondělí']/@date"/> - <xsl:value-of select=
-  "//day[@name= 'pátek']/@date"/></h1>
+            <h1> Denní menu 
+            <xsl:value-of select="//day[@name= 'pondělí']/@date"/> - 
+            <xsl:value-of select="//day[@name= 'pátek']/@date"/></h1>
             <table>  
                 <xsl:apply-templates select="day"/>  
             </table>
@@ -32,12 +32,13 @@
     </xsl:template>
     
     <xsl:template match="meal"> 
-<tr>
-       <td> 
-        <b> <xsl:value-of select="@number"/>. </b> <xsl:value-of select="weight/text()"/><xsl:text> </xsl:text>
-        <xsl:value-of select="name/text()"/> <xsl:text> </xsl:text>
-<xsl:value-of select="price/text()"/> Kč 
-</td> </tr>
+        <tr>
+           <td> 
+            <b> <xsl:value-of select="@number"/>. </b> <xsl:value-of select="weight/text()"/><xsl:text> </xsl:text>
+            <xsl:value-of select="name/text()"/> <xsl:text> </xsl:text>
+            <xsl:value-of select="price/text()"/> Kč 
+            </td> 
+        </tr>
     </xsl:template> 
 
 </xsl:stylesheet>
