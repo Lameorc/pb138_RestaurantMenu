@@ -22,6 +22,9 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <bean id="menuManager" class="backend.Managers.MenuManagerImpl" scope="singleton">
         <constructor-arg ref="dataSource"/>
     </bean>
+    <bean id="reservationManager" class="backend.Managers.ReservationManagerImpl" scope="singleton">
+        <constructor-arg ref="dataSource"/>
+    </bean>
     
     <bean id="templateEngine"
                class="org.thymeleaf.spring4.SpringTemplateEngine">

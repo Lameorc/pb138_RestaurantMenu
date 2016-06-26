@@ -68,7 +68,7 @@ public class ReservationManagerImplTest {
         List<Reservation> reservations = manager.getAllReservations();
         assertThat(reservations).hasSize(1);
 
-        manager.reserveFoodByUser(food, "guest");
+        manager.reserveFoodByUser(food.getId(), "guest");
         reservations = manager.getAllReservations();
         assertThat(reservations).hasSize(2);
         List<Long> foodIds = reservations.stream().map(Reservation::getFoodId).collect(Collectors.toList());
