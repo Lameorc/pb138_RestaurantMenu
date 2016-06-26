@@ -7,7 +7,7 @@ import java.time.LocalDate;
 /**
  * Created by Vojta Podhajsky on 12.06.2016.
  */
-public class Menu {
+public class Menu implements Comparable<Menu>{
     private Long id;
     @DateTimeFormat (pattern="dd. MM. YYYY")
     private LocalDate startDate;
@@ -42,5 +42,11 @@ public class Menu {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+
+    @Override
+    public int compareTo(Menu o) {
+        return startDate.compareTo(o.getStartDate());
     }
 }

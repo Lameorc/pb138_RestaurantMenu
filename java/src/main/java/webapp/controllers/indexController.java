@@ -28,12 +28,29 @@ public class indexController {
         List<Menu> menus = menuManager.getAllMenus();
 
         menus.removeIf(m ->
-                !(m.getStartDate().isBefore(LocalDate.now())
-                        && m.getEndDate().isAfter(LocalDate.now())));
-        model.addAttribute("menus", menus);
+                !(m.getStartDate().getDayOfYear() ==LocalDate.now().getDayOfYear() ||
+                        (m.getStartDate().isBefore(LocalDate.now())
+                        && m.getEndDate().isAfter(LocalDate.now()))||
+                        m.getEndDate().getDayOfYear() == LocalDate.now().getDayOfYear())
+        );
+
 
         TreeMap<LocalDate, List<Food>> foodMap = new TreeMap<>();
+        LocalDate startDate = null;
+        LocalDate endDate = null;
         for (Menu menu : menus){
+            if(startDate == null){
+                startDate = menu.getStartDate();
+            }
+            else if(startDate.isAfter(menu.getStartDate())){
+                startDate = menu.getStartDate();
+            }
+            if(endDate == null){
+                endDate = menu.getEndDate();
+            }
+            else if(endDate.isBefore(menu.getEndDate())){
+                endDate = menu.getEndDate();
+            }
             for(Food f : menuManager.getFoodInMenu(menu)){
                 LinkedList<Food> food =  new LinkedList<Food>();
                 food.add(f);
@@ -41,11 +58,7 @@ public class indexController {
             }
         }
         model.addAttribute("foodMap", foodMap);
-
-        //TODO use "foodMap" instead of "foods"
-        FoodManager foodManager = (FoodManager) context.getBean("foodManager");
-        List<Food> foods = foodManager.getAllFood();
-        //model.addAttribute("foods", foods);
+        model.addAttribute("menu", new Menu(null, startDate, endDate));
 
         return "index";
     }
