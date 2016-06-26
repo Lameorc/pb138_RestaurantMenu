@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<menus>
+    <day date="2016-06-20" name="pondělí">
+        <meal number="1">
+            <weight>150g</weight>
+            <name>Dalmátské čufty, vařené brambory</name>
+            <price>89</price>
+        </meal>
+        <meal number="2">
+            <weight>150g</weight>
+            <name>Srdce na smetaně, houskový knedlík</name>
+            <price>99</price>
+        </meal>
+    </day>
+    <day date="2016-06-21" name="úterý">
+        <meal number="1">
+            <weight>150g</weight>
+            <name>Dalmátské čufty, vařené brambory</name>
+            <price>89</price>
+        </meal>
+        <meal number="2">
+            <weight>150g</weight>
+            <name>Srdce na smetaně, houskový knedlík</name>
+            <price>99</price>
+        </meal>
+    </day>
+    <day date="2016-06-22" name="středa">
+        <meal number="1">
+            <weight>150g</weight>
+            <name>Dalmátské čufty, vařené brambory</name>
+            <price>89</price>
+        </meal>
+        <meal number="2">
+            <weight>150g</weight>
+            <name>Srdce na smetaně, houskový knedlík</name>
+            <price>99</price>
+        </meal>
+    </day>
+    <day date="2016-06-23" name="čtvrtek">
+        <meal number="1">
+            <weight>150g</weight>
+            <name>Dalmátské čufty, vařené brambory</name>
+            <price>89</price>
+        </meal>
+        <meal number="2">
+            <weight>150g</weight>
+            <name>Srdce na smetaně, houskový knedlík</name>
+            <price>99</price>
+        </meal>
+    </day>
+    <day date="2016-06-24" name="pátek">
+        <meal number="1">
+            <weight>150g</weight>
+            <name>Dalmátské čufty, vařené brambory</name>
+            <price>89</price>
+        </meal>
+        <meal number="2">
+            <weight>150g</weight>
+            <name>Srdce na smetaně, houskový knedlík</name>
+            <price>99</price>
+        </meal>
+    </day>
+</menus>

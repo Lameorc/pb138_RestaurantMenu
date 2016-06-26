@@ -3,10 +3,10 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
     <context:property-placeholder location="classpath:conf.properties"/>
     <tx:annotation-driven/>
 
@@ -17,6 +17,16 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
                 <value>backend.xmlObjects.Day</value>
                 <value>backend.xmlObjects.Meal</value>
             </list>
+        </property>
+        <property name="marshallerProperties">
+            <map>
+                <entry>
+                    <key>
+                        <util:constant static-field="javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT" />
+                    </key>
+                    <value type="java.lang.Boolean">true</value>
+                </entry>
+            </map>
         </property>
         <property name="schema" value="classpath:xml/xml_scheme.xsd"/>
     </bean>

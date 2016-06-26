@@ -48,12 +48,14 @@ public class XmlManager {
 
     public Menus parseXml(String xmlFile) throws IOException {
         FileInputStream fis = null;
+        Menus menus = null;
         try {
             fis = new FileInputStream(xmlFile);
-            return (Menus) unmarshaller.unmarshal(new StreamSource(fis));
+            menus = (Menus) unmarshaller.unmarshal(new StreamSource(fis));
         } finally {
             fis.close();
         }
+        return menus;
     }
 
     public void generateXml(String xmlFile, Menus menus) throws IOException{
