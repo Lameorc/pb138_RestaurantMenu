@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="weight" content="PB138 projekt"/>
+    <meta name="description" content="PB138 projekt"/>
     <meta name="author" content="Tomáš Jochec, Vojtěch Podhajský, Lucie Bartoňková"/>
 
     <title>Jídelní lístek | PB138 projekt</title>
@@ -40,6 +40,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"><a href="/" th:href="@{/}"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Jídelní lístek</a></li>
+            <li sec:authorize="hasRole('ROLE_USER')" th:classappend="${#httpServletRequest.getRequestURI() == '/reservation' ? 'active':''}"><a href="reservation" th:href="@{/reservation}"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Objednávky</a></li>
             <li sec:authorize="hasRole('ROLE_ADMIN')" th:classappend="${#httpServletRequest.getRequestURI() == '/food' ? 'active':''}"><a href="food" th:href="@{/food}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Přidat jídlo</a></li>
             <li sec:authorize="hasRole('ROLE_ADMIN')" th:classappend="${#httpServletRequest.getRequestURI() == '/import' ? 'active':''}"><a href="food" th:href="@{/import}"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Importovat z XML</a></li>
             <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="#"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Exportovat XML</a></li>

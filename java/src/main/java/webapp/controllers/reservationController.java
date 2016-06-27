@@ -22,7 +22,13 @@ public class reservationController {
 
     @RequestMapping(value="/reservation", method=RequestMethod.GET)
     public String reservationList(Model model) {
-        //model.addAttribute("food", new Food());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+
+        ReservationManager reservationManager = (ReservationManager) context.getBean("reservationManager");
+        reservationManager.getFoodReservedByUser(name);
+
+        model.addAttribute("food");
         return "reservation";
     }
 
