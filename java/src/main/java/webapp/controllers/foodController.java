@@ -17,7 +17,10 @@ import org.springframework.ui.ModelMap;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalField;
+import java.time.temporal.WeekFields;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Tomáš Jochec on 22.06.2016.
@@ -41,9 +44,19 @@ public class foodController {
         List<Menu> menus = menuManager.getAllMenus();
 
         menus.removeIf(m ->
-                !(m.getStartDate().isBefore(LocalDate.now())
-                        && m.getEndDate().isAfter(LocalDate.now())));
+                !(m.getStartDate().getDayOfYear() == date.getDayOfYear() ||
+                        (m.getStartDate().isBefore(date)
+                                && m.getEndDate().isAfter(date))||
+                        m.getEndDate().getDayOfYear() == date.getDayOfYear())
+        );
 
+
+        if(menus.size() == 0){
+            TemporalField fieldISO = WeekFields.of(Locale.getDefault()).dayOfWeek();
+            Menu menu = new Menu(null, date.with(fieldISO, 1), date.with(fieldISO, 7));
+            menuManager.createMenu(menu);
+            menus.add(menu);
+        }
 
         food.setMenuId(menus.get(0).getId());
         food.setDate(date);

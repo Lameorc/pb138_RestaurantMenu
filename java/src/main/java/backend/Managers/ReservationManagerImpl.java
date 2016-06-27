@@ -39,8 +39,8 @@ public class ReservationManagerImpl implements ReservationManager {
     }
 
     @Override
-    public void reserveFoodByUser(Food food, String userName) {
-        if(food == null){
+    public void reserveFoodByUser(Long foodId, String userName) {
+        if(foodId == null){
             throw new IllegalArgumentException("Food can't be null");
         }
         if(userName == null){
@@ -49,8 +49,20 @@ public class ReservationManagerImpl implements ReservationManager {
         SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbc).withTableName("reservation");
         SqlParameterSource params = new MapSqlParameterSource()
                 .addValue("person", userName)
-                .addValue("food_id", food.getId());
+                .addValue("food_id", foodId);
         insert.execute(params);
+    }
+
+    @Override
+    public void cancelReservationByUser(Long foodId, String userName) {
+        if(foodId == null){
+            throw new IllegalArgumentException("Food can't be null");
+        }
+        if(userName == null){
+            throw new IllegalArgumentException("UserName can't be null");
+        }
+        jdbc.update("DELETE FROM RESERVATION WHERE PERSON = ? AND FOOD_ID = ?",
+                "'" + userName + "'", foodId);
     }
 
     @Override

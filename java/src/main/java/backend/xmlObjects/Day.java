@@ -5,6 +5,7 @@ import backend.utils.DateAdapter;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,10 +19,15 @@ public class Day {
     private List<Meal> meals;
 
     @XmlAttribute(name="date")
+    @XmlSchemaType(name="date")
     private XMLGregorianCalendar date;
 
     @XmlAttribute(name="name")
     private String name;
+
+    public Day() {
+        meals = new ArrayList<>();
+    }
 
     public List<Meal> getMeals() {
         return meals;
@@ -31,7 +37,11 @@ public class Day {
         this.meals = meals;
     }
 
-    public XMLGregorianCalendar getDate() {
+    public String getDate() {
+        return date.toXMLFormat();
+    }
+
+    public XMLGregorianCalendar getDateAsCalendar(){
         return date;
     }
 

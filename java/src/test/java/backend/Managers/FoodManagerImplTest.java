@@ -51,7 +51,7 @@ public class FoodManagerImplTest {
         manager.createFood(food);
 
         food.setDate(LocalDate.of(2016,10,10));
-        food.setDescription("Chutné");
+        food.setWeight("Chutné");
         food.setName("Rajská");
         food.setPrice(BigDecimal.valueOf(350));
 

@@ -50,12 +50,12 @@
 
         <div class="form-group">
             <label for="price">Cena</label>
-            <input name="price" type="number" th:field="*{price}" id="price" class="form-control" placeholder="Cena" required="required" />
+            <input name="price" type="number" min="0" th:field="*{price}" id="price" class="form-control" placeholder="Cena" required="required" />
         </div>
 
         <div class="form-group">
-            <label for="description">Popis</label>
-            <input name="description" type="text" th:field="*{description}" id="description" class="form-control" placeholder="Popis" required="required" />
+            <label for="weight">Váha (g)</label>
+            <input name="weight" type="number" min="0" th:field="*{weight}" id="weight" class="form-control" placeholder="Váha (g)" required="required" />
         </div>
 
         <div class="form-group">

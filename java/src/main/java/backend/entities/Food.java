@@ -2,7 +2,6 @@ package backend.entities;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.xml.bind.annotation.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -13,7 +12,7 @@ public class Food {
     private Long id;
     private String name;
     private BigDecimal price;
-    private String description;
+    private String weight;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate date;
     private Long menuId;
@@ -42,12 +41,12 @@ public class Food {
         this.price = price;
     }
 
-    public String getDescription() {
-        return description;
+    public String getWeight() {
+        return weight;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setWeight(String weight) {
+        this.weight = weight;
     }
 
     public LocalDate getDate() {
@@ -66,11 +65,11 @@ public class Food {
         this.menuId = menu_id;
     }
 
-    public Food(Long id, String name, BigDecimal price, String description, LocalDate date, Long menuId) {
+    public Food(Long id, String name, BigDecimal price, String weight, LocalDate date, Long menuId) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.description = description;
+        this.weight = weight;
         this.date = date;
         this.menuId = menuId;
     }

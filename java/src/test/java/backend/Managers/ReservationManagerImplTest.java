@@ -3,12 +3,14 @@ package backend.Managers;
 import backend.entities.Food;
 import backend.entities.Reservation;
 import org.junit.*;
+import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.PathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
+import org.testng.annotations.*;
 
 
 import java.math.BigDecimal;
@@ -24,6 +26,7 @@ import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.
  * Created by Vojta Podhajsky on 24.06.2016.
  */
 public class ReservationManagerImplTest {
+
 
 
     private ReservationManagerImpl manager;
@@ -68,11 +71,20 @@ public class ReservationManagerImplTest {
         List<Reservation> reservations = manager.getAllReservations();
         assertThat(reservations).hasSize(1);
 
-        manager.reserveFoodByUser(food, "guest");
+        FoodManager fm = new FoodManagerImpl(db);
+        Food foodToReserve = new Food(null,
+                "Kopr",
+                BigDecimal.valueOf(15),
+                "33g",
+                LocalDate.of(2016, 12, 16),
+                1L);
+        fm.createFood(foodToReserve);
+
+        manager.reserveFoodByUser(foodToReserve.getId(), "guest");
         reservations = manager.getAllReservations();
         assertThat(reservations).hasSize(2);
         List<Long> foodIds = reservations.stream().map(Reservation::getFoodId).collect(Collectors.toList());
-        assertThat(foodIds).contains(food.getId());
+        assertThat(foodIds).contains(foodToReserve.getId());
     }
 
     @Test
@@ -82,4 +94,11 @@ public class ReservationManagerImplTest {
         assertThat(foodReserved).contains(food);
     }
 
+    @Test
+    public void testCancelReservationByUser() throws Exception {
+        manager.cancelReservationByUser(food.getId(), "guest");
+
+        List<Food> foodReserved = manager.getFoodReservedByUser("guest");
+        assertThat(foodReserved).isEmpty();
+    }
 }

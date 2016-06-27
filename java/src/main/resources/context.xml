@@ -22,6 +22,9 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <bean id="menuManager" class="backend.Managers.MenuManagerImpl" scope="singleton">
         <constructor-arg ref="dataSource"/>
     </bean>
+    <bean id="reservationManager" class="backend.Managers.ReservationManagerImpl" scope="singleton">
+        <constructor-arg ref="dataSource"/>
+    </bean>
     
     <bean id="templateEngine"
                class="org.thymeleaf.spring4.SpringTemplateEngine">
@@ -60,6 +63,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         <property name="marshaller" ref="jaxb2Marshaller"/>
         <property name="unmarshaller" ref="jaxb2Marshaller"/>
         <property name="xmlSchema" value="classpath:xml/xml_scheme.xsd"/>
+        <property name="xsltTransformation" value="src/main/resources/xml/xslt.xsl"/>
     </bean>
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

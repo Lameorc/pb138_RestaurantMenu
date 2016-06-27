@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="PB138 projekt"/>
+    <meta name="weight" content="PB138 projekt"/>
     <meta name="author" content="Tomáš Jochec, Vojtěch Podhajský, Lucie Bartoňková"/>
 
     <title>Jídelní lístek | PB138 projekt</title>
@@ -42,6 +42,7 @@
             <li th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"><a href="/" th:href="@{/}"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Jídelní lístek</a></li>
             <li sec:authorize="hasRole('ROLE_ADMIN')" th:classappend="${#httpServletRequest.getRequestURI() == '/food' ? 'active':''}"><a href="food" th:href="@{/food}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Přidat jídlo</a></li>
             <li sec:authorize="hasRole('ROLE_ADMIN')" th:classappend="${#httpServletRequest.getRequestURI() == '/import' ? 'active':''}"><a href="food" th:href="@{/import}"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Importovat z XML</a></li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="#"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Exportovat XML</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
               <li sec:authorize="hasRole('ROLE_USER')">
@@ -56,7 +57,7 @@
       </div> </nav>
 
     <div class="container">
-      <div class="row" th:each="menu : ${menus}">
+      <div class="row">
         <div class="col-md-12">
 
           <h2 th:text="'Denní menu '+ ${#temporals.format(menu.startDate, 'd. M. YYYY')} + ' - ' + ${#temporals.format(menu.endDate, 'd. M. YYYY')}">13. 6. 2016 - 19. 6. 2016</h2>
@@ -69,11 +70,11 @@
             <tbody>
                 <tr th:each="food, i : ${entry.value}">
                   <td th:text="${i.count} + '.'" class="col-md-1"></td>
-                  <td th:text="${food.name}" class="col-md-7"></td>
+                  <td th:text="${food.weight} + 'g ' + ${food.name}" class="col-md-7"></td>
                   <td th:text="${food.price} + ' ,-'" class="col-md-1"></td>
                   <td class="col-md-1"><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/food/edit/{id}(id=${food.id})}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Upravit</a></td>
                   <td class="col-md-1"><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/food/delete/{id}(id=${food.id})}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Smazat</a></td>
-                  <td class="col-md-1"><a sec:authorize="hasRole('ROLE_USER')" th:href="${food.id}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td>
+                  <td class="col-md-1"><a sec:authorize="hasRole('ROLE_USER')" th:href="@{/reservation/{id}(id=${food.id})}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</a></td>
                 </tr>
             </tbody>
           </table>
