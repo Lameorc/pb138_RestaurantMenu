@@ -1,6 +1,7 @@
 package webapp.controllers;
 
 import backend.Managers.ReservationManager;
+import backend.entities.Food;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.Authentication;
@@ -10,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 /**
  * Created by Tomáš Jochec on 22.06.2016.
@@ -26,9 +29,9 @@ public class reservationController {
         String name = auth.getName(); //get logged in username
 
         ReservationManager reservationManager = (ReservationManager) context.getBean("reservationManager");
-        reservationManager.getFoodReservedByUser(name);
+        List<Food> foods = reservationManager.getFoodReservedByUser(name);
 
-        model.addAttribute("food");
+        model.addAttribute("foods", foods);
         return "reservation";
     }
 

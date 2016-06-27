@@ -70,7 +70,7 @@ public class ReservationManagerImpl implements ReservationManager {
         if(userName == null){
             throw new IllegalArgumentException("UserName can't be null");
         }
-        return jdbc.query("SELECT * FROM FOOD WHERE ID = (SELECT FOOD_ID FROM RESERVATION WHERE RESERVATION.PERSON = ?)",
-                (rs, row)-> new FoodMapper().mapRow(rs, row),"'" + userName + "'");
+        return jdbc.query("SELECT * FROM FOOD WHERE ID IN (SELECT FOOD_ID FROM RESERVATION WHERE RESERVATION.PERSON = ?)",
+                (rs, row)-> new FoodMapper().mapRow(rs, row), userName);
     }
 }

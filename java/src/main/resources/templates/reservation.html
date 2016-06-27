@@ -30,8 +30,18 @@
 </nav>
 
 <div class="container">
-    <h2>403</h2>
-    <p>Nemáte právo zobrazit tuto stránku.</p>
+    <h2>Objednaná jídla</h2>
+
+    <table class="table table-hover table-condensed">
+        <tbody>
+        <tr th:each="food : ${foods}">
+            <td class="col-md-2"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> <span th:text="${#temporals.format(food.date, 'd. M. YYYY')}"></span></td>
+            <td th:text="${food.weight} + 'g ' + ${food.name}" class="col-md-7"></td>
+            <td th:text="${food.price} + ' ,-'" class="col-md-1"></td>
+        </tr>
+        </tbody>
+    </table>
+
 </div>
 </body>
 </html>
