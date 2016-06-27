@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Implementation of {@link ReservationManager} interface which used {@link JdbcTemplate} with Derby db
  * Created by Vojta Podhajsky on 24.06.2016.
  */
 public class ReservationManagerImpl implements ReservationManager {
