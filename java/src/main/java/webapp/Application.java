@@ -1,5 +1,8 @@
 package webapp;
 
+
+import java.io.File;
+
 import backend.Managers.MenuManager;
 import backend.Managers.XmlManager;
 import backend.entities.Menu;
@@ -13,6 +16,7 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.thymeleaf.templateresolver.TemplateResolver;
+import org.springframework.boot.CommandLineRunner;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import java.io.IOException;
@@ -40,8 +44,17 @@ public class Application {
         return templateResolver;
     };
 
+    public static String ROOT = "uploads";
+
+    @Bean
+    CommandLineRunner init() {
+        return (String[] args) -> {
+            new File(ROOT).mkdir();
+        };
+    }
+
     @Scheduled(cron = "* * * * Mon")
-    public void generateXmlForThisWeek(){
+    public void generateXmlForThisWeek() {
         MenuManager menuManager = (MenuManager) ctx.getBean("menuManager");
         List<Menu> menus = menuManager.getAllMenus();
 
