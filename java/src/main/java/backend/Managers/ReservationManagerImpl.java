@@ -62,7 +62,7 @@ public class ReservationManagerImpl implements ReservationManager {
             throw new IllegalArgumentException("UserName can't be null");
         }
         jdbc.update("DELETE FROM RESERVATION WHERE PERSON = ? AND FOOD_ID = ?",
-                "'" + userName + "'", foodId);
+                userName, foodId);
     }
 
     @Override

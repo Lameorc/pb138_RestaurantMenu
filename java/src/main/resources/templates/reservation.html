@@ -38,6 +38,7 @@
             <td class="col-md-2"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> <span th:text="${#temporals.format(food.date, 'd. M. YYYY')}"></span></td>
             <td th:text="${food.weight} + 'g ' + ${food.name}" class="col-md-7"></td>
             <td th:text="${food.price} + ' ,-'" class="col-md-1"></td>
+            <td class="col-md-1"><a sec:authorize="hasRole('ROLE_USER')" th:href="@{/reservation/cancel/{id}(id=${food.id})}" class="btn btn-default btn-xs">Zrušit objednávku</a></td>
         </tr>
         </tbody>
     </table>

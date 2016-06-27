@@ -46,4 +46,16 @@ public class reservationController {
 
         return "redirect:/";
     }
+
+    @RequestMapping("/reservation/cancel/{id}")
+    public String cancelReservation(@PathVariable("id") long foodId,  Model model){
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+
+        ReservationManager reservationManager = (ReservationManager) context.getBean("reservationManager");
+        reservationManager.cancelReservationByUser(foodId, name);
+
+        return "redirect:/reservation";
+    }
 }
