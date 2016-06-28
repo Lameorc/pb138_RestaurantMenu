@@ -32,8 +32,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
+ * Manager for working with xml, xsd and xsl files. Uses {@link Day}, {@link Meal} and {@link Menus} for internal converting
  * Created by Vojta Podhajsky on 21.06.2016.
- * Due to how shitty the sax parser file opener is the filepath needs to be from project root
  */
 public class XmlManager {
 
@@ -67,7 +67,12 @@ public class XmlManager {
         return xmlSchema;
     }
 
-
+    /**
+     * Parses xmlFile and returns a {@link MenuFoodListTuple} object containing menu corresponding to xml file
+     * @param xmlFile path to xmlFile, either absolute or from root of project
+     * @return {@link MenuFoodListTuple} containing xmlFile contents
+     * @throws IOException when xmlFile can't be opened
+     */
     public MenuFoodListTuple parseXml(String xmlFile) throws IOException {
         FileInputStream fis = null;
         Menus menus = null;
@@ -80,6 +85,13 @@ public class XmlManager {
         return parseMenusToFoodListTuple(menus);
     }
 
+    /**
+     * Inverse of parseXml function
+     * @param xmlFile output file path, either absolute or from root of project
+     * @param tuple input data
+     * @throws IOException when file can't be accessed 
+     * @throws DatatypeConfigurationException when tuple can't be converted as a result of using {@Link XMLGregorianCalendar}
+     */
     public void generateXml(String xmlFile, MenuFoodListTuple tuple) throws IOException, DatatypeConfigurationException {
         FileOutputStream fos = null;
         Menus menus = parseMenuFoodListTupleToMenus(tuple);
@@ -90,7 +102,11 @@ public class XmlManager {
             fos.close();
         }
     }
-
+    /**
+     * Uses xsltTransformation to generate a html
+     * @param xmlFile path to xml used as data, either absolute or from root of project
+     * @param htmlFile path to output html file, either absolute or from root of project 
+     */
     public void generateHtmlFromXml(String xmlFile, String htmlFile) {
         try {
             parseXml(xmlFile);

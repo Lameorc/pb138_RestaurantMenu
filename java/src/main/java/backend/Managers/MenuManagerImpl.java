@@ -15,6 +15,7 @@ import java.sql.Date;
 import java.util.List;
 
 /**
+ * Implementation of {@link MenuManager} using {@link JdbcTemplate} as connection to derby Db
  * Created by Tomas Jochec on 15.06.2016.
  */
 public class MenuManagerImpl implements MenuManager {

@@ -14,6 +14,7 @@ import backend.utils.FoodMapper;
 
 
 /**
+ * Implements {@link FoodManager}using {@link JdbcTempalte} for work with derby DB.
  * Created by Vojta Podhajsky on 12.06.2016.
  */
 public class FoodManagerImpl implements FoodManager {

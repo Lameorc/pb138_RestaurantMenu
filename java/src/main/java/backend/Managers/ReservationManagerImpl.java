@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Implementation of {@link ReservationManager} interface which used {@link JdbcTemplate} with Derby db
  * Created by Vojta Podhajsky on 24.06.2016.
  */
 public class ReservationManagerImpl implements ReservationManager {
@@ -62,7 +63,7 @@ public class ReservationManagerImpl implements ReservationManager {
             throw new IllegalArgumentException("UserName can't be null");
         }
         jdbc.update("DELETE FROM RESERVATION WHERE PERSON = ? AND FOOD_ID = ?",
-                "'" + userName + "'", foodId);
+                userName, foodId);
     }
 
     @Override
@@ -70,7 +71,7 @@ public class ReservationManagerImpl implements ReservationManager {
         if(userName == null){
             throw new IllegalArgumentException("UserName can't be null");
         }
-        return jdbc.query("SELECT * FROM FOOD WHERE ID = (SELECT FOOD_ID FROM RESERVATION WHERE RESERVATION.PERSON = ?)",
-                (rs, row)-> new FoodMapper().mapRow(rs, row),"'" + userName + "'");
+        return jdbc.query("SELECT * FROM FOOD WHERE ID IN (SELECT FOOD_ID FROM RESERVATION WHERE RESERVATION.PERSON = ?)",
+                (rs, row)-> new FoodMapper().mapRow(rs, row), userName);
     }
 }
