@@ -1,0 +1,13 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Shrnutí práce</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="article"><div class="titlepage"><div><div><h2 class="title"><a name="id997040"></a>Shrnutí práce</h2></div><div><h3 class="subtitle"><i>Správa denního menu</i></h3></div><div><div class="author"><h3 class="author"><span class="firstname">Vojt&#283;ch</span> <span class="surname">Podhajský</span></h3></div></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl class="toc"><dt><span class="section"><a href="#id997077">Shrnutí práce</a></span></dt><dt><span class="section"><a href="#id997092">Backend</a></span></dt><dt><span class="section"><a href="#id997079">
+            Object/XML mapping
+        </a></span></dt></dl></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id997077"></a>Shrnutí práce</h2></div></div></div><p>
+                Mým &#367;kolem v projektu byla implementace backendové &#269;ásti aplikace. Implementoval jsem v&#283;t&#353;inu mana&#382;er&#367; pro práci s databázi a xml. Dále jsem zavedl v&#283;t&#353;inu konfigurace pro maven a &#269;ást spring context.
+            </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id997092"></a>Backend</h2></div></div></div><p>
+        V aplikaci je pou&#382;ita databáze Derby a server Tomcat. Pro komunikaci s databázi je pou&#382;ito rozhraní jdbc. 
+        </p><p>
+            Mana&#382;ery jsou pomocí springu namapovány do aplika&#269;ního contextu, aby je bylo mo&#382;né volat odkudkoliv s aplikace bez nutnosti vytvá&#345;ení p&#345;ipojení k databázi.
+        </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id997079"></a>
+            Object/XML mapping
+        </h2></div></div></div><p>
+            Pro mapovaní objekt&#367; na xml a zp&#283;t je pou&#382;ita implementace marshalleru jaxb2 z knihovny spring.integration. Objekty jsou pro zjednodu&#353;ení konfigurace marshalleru napamovány 1:1 k java objekt&#367;m a a&#382; tyto objekty jsou následn&#283; pou&#382;ity pro instanciaci objekt&#367; pou&#382;itých na webu a v databázi.
+        </p></div></div></body></html>
